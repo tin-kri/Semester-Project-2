@@ -23,7 +23,7 @@ This project is a front-end application that interfaces with the Noroff API to p
 
 1. Clone the repo
    ```bash
-   git clone https://github.com/your-username/auction-house.git
+   git clone https://github.com/tin-kri/Semester-Project-2.git 
 
 2. Install dependencies
    ```bash
