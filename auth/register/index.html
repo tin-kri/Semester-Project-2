@@ -49,8 +49,11 @@
                         <p>Enter your details below to create your account</p>
                     </div>
 
-                    <form id="register-form">
+                    <form id="register-form"
+                        data-form-type="register" novalidate>
+
                         <!-- Full Name -->
+                         <!-- unsure about maxlength and autocomplete-->
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <div class="input-wrapper">
@@ -60,9 +63,15 @@
                                     name="name" 
                                     required
                                     placeholder="John Doe"
+                                    pattern="^[a-zA-ZÀ-ÿÆØÅæøå]+(?: [a-zA-ZÀ-ÿÆØÅæøå'-]+)+$"
+                                    title="Enter your full name (first, middle and last name, letters only)"
+                                    minlength="3"
+                                    maxlength="50"
+                                    autocomplete="name"
+                                    aria-describedby="name-error"
                                 >
                             </div>
-                            <div class="error-message" id="name-error"></div>
+                            <div class="error-message" id="name-error" role="alert" aria-live="polite"></div>
                         </div>
 
                         <!-- Email Address -->
@@ -75,10 +84,14 @@
                                     name="email" 
                                     required
                                     placeholder="john.doe@stud.noroff.no"
+                                    pattern="[a-zA-Z0-9._%+-]+@stud\.noroff\.no$"
+                                    title="Email must end with @stud.noroff.no"
+                                    autocomplete="email"
+                                    aria-describedby="email-error"
                                 >
                             </div>
                             <div class="form-hint">You must use your stud.noroff.no email address to register.</div>
-                            <div class="error-message" id="email-error"></div>
+                            <div class="error-message" id="email-error" role="alert" aria-live="polite"></div>
                         </div>
 
                         <!-- Password -->
@@ -91,10 +104,16 @@
                                     name="password" 
                                     required
                                     placeholder="••••••••••••"
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?&quot;:{}|&lt;&gt;]).{8,15}$"
+                                    title="Password must be at least 8 characters with uppercase, lowercase, number, and special character"
+                                    minlength="8"
+                                    maxlength="20"
+                                    autocomplete="new-password"
+                                    aria-describedby="password-error"
                                 >
                             </div>
-                            <div class="form-hint">Password must be at least 8 characters.</div>
-                            <div class="error-message" id="password-error"></div>
+                            <div class="form-hint">Password must be at least 8 characters and max 20 characters.</div>
+                            <div class="error-message" id="password-error" role="alert" aria-live="polite"></div>
                         </div>
 
                         <!-- Terms and Privacy -->
@@ -105,11 +124,14 @@
                                     id="terms" 
                                     name="terms" 
                                     required
+                                    aria-describedby="terms-error"
                                 >
                                 <label for="terms">
                                     I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
                                 </label>
                             </div>
+                            <div class="error-message" id="terms-error" role="alert" aria-live="polite"></div>
+                        </div>
                         </div>
 
                         <!-- Submit Button -->
@@ -120,7 +142,7 @@
                         </div>
 
                         <!-- Error Message -->
-                        <div class="form-error" id="form-error"></div>
+                        <div class="form-error" id="form-error" role="alert" aria-live="polite" style="display: none;"></div>
 
                         <!-- Sign In Link -->
                         <div class="form-footer">
