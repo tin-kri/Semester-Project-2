@@ -1,14 +1,11 @@
-
-
-
 export const API_CONFIG = {
-    KEY: "4829af8a-6808-4656-99de-32c69a51c4d0",
+    // KEY: "4829af8a-6808-4656-99de-32c69a51c4d0",
     BASE_URL: "https://v2.api.noroff.dev",
     
     ENDPOINTS: {
         // Auth endpoints
         AUTH: {
-            BASE: "/auth",
+            // BASE: "/auth",
             REGISTER: "/auth/register",
             LOGIN: "/auth/login",
             CREATE_API_KEY: "/auth/create-api-key"
@@ -23,6 +20,11 @@ export const API_CONFIG = {
         }
     }
 };
+
+
+// const API_BASE = "https://v2.api.noroff.dev";
+// const API_AUTH = `${API_BASE}/auth`;
+// const API_AUTH_REGISTER = `${API_AUTH}/register`;
 
 // export const API_KEY = "4829af8a-6808-4656-99de-32c69a51c4d0";
 

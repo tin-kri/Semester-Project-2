@@ -24,7 +24,7 @@
 // `
 
 // setupCounter(document.querySelector('#counter'))
-console.log("working?");
+
 
 // const API_KEY = {
 //     headers: {
@@ -44,40 +44,49 @@ console.log("working?");
 //   const data = await response.json()
 
 
-const registerForm = document.querySelector("#register-form");
+// const registerForm = document.querySelector("#register-form");
 
 
-const API_BASE = "https://v2.api.noroff.dev";
-const API_AUTH = `${API_BASE}/auth`;
-const API_AUTH_REGISTER = `${API_AUTH}/register`;
+// const API_BASE = "https://v2.api.noroff.dev";
+// const API_AUTH = `${API_BASE}/auth`;
+// const API_AUTH_REGISTER = `${API_AUTH}/register`;
 
-//get user info formFields
-//fetch request post request
-//storage
-async function registerUser(userDetails) {
-  try {
-    const fetchOptions = {
-        method: 'POST',
-        body: JSON.stringify(userDetails),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    };
-    const response = await fetch(API_AUTH_REGISTER, fetchOptions);
-    console.log(response);
-  } catch (error) {
-    console.log(error);
-  }
-}
+// //get user info formFields
+// //fetch request post request
+// //storage
+// async function registerUser(userDetails) {
+//   try {
+//     const fetchOptions = {
+//         method: 'POST',
+//         body: JSON.stringify(userDetails),
+//         headers: {
+//             'Content-Type': 'application/json',
+//         }
+//     };
+//     const response = await fetch(API_AUTH_REGISTER, fetchOptions);
+//     console.log(response);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
-//handler
+// //handler
 
-function onRegisterFormSubmit(event) {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-  const formFields = Object.fromEntries(formData);
-  registerUser(formFields)
-  console.log(formFields);
-}
+// function onRegisterFormSubmit(event) {
+//   event.preventDefault();
+//   const formData = new FormData(event.target);
+//   const formFields = Object.fromEntries(formData);
+//   registerUser(formFields)
+//   console.log(formFields);
+// }
 
-registerForm.addEventListener("submit", onRegisterFormSubmit);
+// registerForm.addEventListener("submit", onRegisterFormSubmit);
+// js/main.js - Application entry point
+
+import { initializeApp } from '../js/utils/router.js';
+
+// Initialize the application when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 Auction House App starting...');
+    initializeApp();
+});
