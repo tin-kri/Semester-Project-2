@@ -10,19 +10,23 @@
       href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <!-- Header -->
+    
     <header>
+       <div>
+        <a href="/auth/register/index.html">register</a>
+        <a href="/auth/login/index.html">login</a>
+      </div>
       <div class="container">
         <div class="header-content">
-          <!-- Logo -->
+       
           <div class="logo">
             <a href="/">DROPP//</a>
           </div>
 
-          <!-- Mobile menu button -->
+        
           <button class="mobile-menu-btn" type="button">
             <span></span>
             <span></span>
@@ -32,14 +36,14 @@
       </div>
     </header>
 
-    <!-- Main Content -->
+  
     <main>
       <div class="container">
         <div class="login-wrapper">
-          <!-- Welcome Section -->
+        
           <div class="welcome-section">
             <div class="icon">
-              <!-- Icon placeholder -->
+              
             </div>
             <h1>Welcome Back</h1>
             <p>
@@ -48,7 +52,7 @@
             </p>
           </div>
 
-          <!-- Login Form -->
+         
           <div class="form-container">
             <div class="form-header">
               <h2>Login</h2>
@@ -56,12 +60,11 @@
             </div>
 
             <form id="login-form">
-              <!-- Email Address -->
+              
               <div class="form-group">
                 <label for="email">Email Address</label>
                 <div class="input-wrapper">
                   <input
-                    value="kyendhsyyyt@stud.noroff.no"
                     type="email"
                     id="email"
                     name="email"
@@ -72,7 +75,7 @@
                 <div class="error-message" id="email-error"></div>
               </div>
 
-              <!-- Password -->
+           
               <div class="form-group">
                 <label for="password">Password</label>
                 <div class="input-wrapper">
@@ -87,7 +90,7 @@
                 <div class="error-message" id="password-error"></div>
               </div>
 
-              <!-- Remember Me & Forgot Password -->
+            
               <div class="form-group options-row">
                 <div class="checkbox-wrapper">
                   <input type="checkbox" id="remember-me" name="remember-me" />
@@ -98,15 +101,13 @@
                 </div>
               </div>
 
-              <!-- Submit Button -->
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Sign In</button>
               </div>
 
-              <!-- Error Message -->
               <div class="form-error" id="form-error"></div>
 
-              <!-- Sign Up Link -->
+       
               <div class="form-footer">
                 <p>
                   Don't have an account?
@@ -119,9 +120,9 @@
       </div>
     </main>
 
-    <!-- Footer -->
+
     <footer></footer>
 
-    <script src="/js/main.js"></script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
