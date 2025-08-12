@@ -1,5 +1,87 @@
 @import "tailwindcss";
 
+@theme {
+  --font-archivo: "Archivo", sans-serif;
+  --font-ibm: "IBM Plex Sans", sans-serif;
+
+  --color-dropp-primary: #1A9CB0;
+  --color-dropp-secondary: #6366f1;
+  --color-dropp-light: #e0f7fa;
+  --color-dropp-dark: #1e293b;
+
+  --color-dropp-gray-50: #f8fafc;
+  --color-dropp-gray-100: #f1f5f9;
+  --color-dropp-gray-200: #e2e8f0;
+  --color-dropp-gray-300: #cbd5e1;
+  --color-dropp-gray-400: #94a3b8;
+  --color-dropp-gray-500: #64748b;
+  --color-dropp-gray-600: #475569;
+  --color-dropp-gray-700: #334155;
+  --color-dropp-gray-800: #1e293b;
+  --color-dropp-gray-900: #0f172a;
+}
+
+@layer components {
+  .form-group {
+    @apply mb-6;
+  }
+
+  .form-group.options-row {
+    @apply flex items-center justify-between w-full;
+  }
+
+  .input-wrapper {
+    @apply relative;
+  }
+
+  .error-message {
+    @apply text-red-500 text-xs mt-1;
+  }
+
+  .checkbox-wrapper {
+    @apply flex items-center flex-shrink-0;
+  }
+
+  .forgot-password {
+    @apply flex-shrink-0;
+  }
+
+  .forgot-password a {
+    @apply text-sm font-medium text-dropp-primary hover:text-dropp-primary/80;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply bg-dropp-primary text-white hover:bg-dropp-primary/90 focus-visible:ring-dropp-primary;
+  }
+
+  .form-footer {
+    @apply text-center;
+  }
+
+  .form-error {
+    @apply text-red-500 text-sm text-center mb-6;
+  }
+  /* Logout Button Styles */
+.logout-btn {
+  @apply text-dropp-gray-600 hover:text-red-600 text-sm font-medium transition-colors duration-200;
+}
+
+.logout-btn:hover {
+  @apply scale-105;
+}
+
+
+
+}
+
+
+
+/* @import "tailwindcss";
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -95,4 +177,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+}*/

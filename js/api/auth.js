@@ -2,30 +2,31 @@ import { API_CONFIG } from "../utils/constants.js";
 import { addToLocalStorage } from "../utils/storage.js";
 
 export async function registerUser(userDetails) {
-  try {
-    const fetchOptions = {
-      method: "POST",
-      body: JSON.stringify(userDetails),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUTH.REGISTER}`;
-    const response = await fetch(url, fetchOptions);
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.errors?.[0]?.message || "Registration failed");
+    try {
+        const fetchOptions = {
+            method: "POST",
+            body: JSON.stringify(userDetails),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        
+        const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUTH.REGISTER}`;
+        const response = await fetch(url, fetchOptions);
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.errors?.[0]?.message || "Registration failed");
+        }
+        
+        const data = await response.json();
+        console.log("Registration successful"); 
+        return data;
+        
+    } catch (error) {
+        console.error("Registration error:", error); 
+        throw error;
     }
-
-    const data = await response.json();
-    console.log("Registration successful:", data);
-    return data;
-  } catch (error) {
-    console.error("Registration error:", error);
-    throw error;
-  }
 }
 
 export async function loginUser(userDetails) {
@@ -46,26 +47,33 @@ export async function loginUser(userDetails) {
             throw new Error(errorData.errors?.[0]?.message || "Login failed");
         }
         
-    
         const { data } = await response.json();
-        console.log("Login successful:", data);
+        console.log("Login successful"); 
         
-        const accessToken = data.accessToken;
-        console.log("Access token:", accessToken);
-        
-        
-        const stored = addToLocalStorage('accessToken', accessToken);
-        if (stored) {
-            console.log("Access token stored successfully");
-        } else {
-            console.warn("Failed to store access token");
-        }
+        saveLoginData(data);
         
         return data;
         
     } catch (error) {
         console.error("Login error:", error);
         throw error;
+    }
+}
+
+function saveLoginData(userData) {
+    const accessToken = userData.accessToken;
+    const tokenSaved = addToLocalStorage('accessToken', accessToken);
+    
+    const userInfo = {
+        name: userData.name,
+        email: userData.email,
+        avatar: userData.avatar,
+        banner: userData.banner
+    };
+    const userSaved = addToLocalStorage('user', JSON.stringify(userInfo));
+    
+    if (!tokenSaved || !userSaved) {
+        console.warn("Failed to save login data"); 
     }
 }
 

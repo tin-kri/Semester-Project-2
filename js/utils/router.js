@@ -30,6 +30,6 @@ async function initializeLoginPage() {
 
 async function initializeLandingPage() {
     console.log('Loading landing page...');
-    // TODO: Create landingPage.js with initLandingPage function
-    console.log('Landing page functionality not yet implemented');
+    const { initLandingPage } = await import('../pages/landingPage.js');
+    initLandingPage();
 }
