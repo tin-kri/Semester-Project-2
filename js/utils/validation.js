@@ -1,5 +1,3 @@
- 
-
 export class FormValidator {
     constructor(formId) {
       this.form = document.getElementById(formId)
