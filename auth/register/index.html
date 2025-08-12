@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Account | DROPP</title>
+    <title>Register | DROPP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,8 +12,532 @@
     />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
-  <body>
+  <body class="bg-dropp-gray-50 font-ibm min-h-screen">
     <!-- Header -->
+    <header class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <a
+              href="/"
+              class="text-2xl font-bold font-archivo text-dropp-primary"
+            >
+              DROPP//
+            </a>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex items-center space-x-8">
+            <a
+              href="#"
+              class="text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors"
+            >
+              Auctions
+            </a>
+            <a
+              href="#"
+              class="text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors"
+            >
+              Sell
+            </a>
+
+            <!-- Search Bar -->
+            <div class="relative">
+              <input
+                type="text"
+                placeholder="Search for..."
+                class="w-64 pl-4 pr-10 py-2 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary"
+              />
+              <svg
+                class="absolute right-3 top-2.5 h-4 w-4 text-dropp-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </div>
+
+            <!-- Auth Buttons -->
+            <div class="flex items-center space-x-4">
+              <a
+                href="/auth/login/index.html"
+                class="text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors"
+              >
+                Login
+              </a>
+              <a
+                href="/auth/register/index.html"
+                class="bg-dropp-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-dropp-primary/90 transition-colors"
+              >
+                Sign up
+              </a>
+            </div>
+          </nav>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button
+              type="button"
+              class="text-dropp-gray-500 hover:text-dropp-gray-700"
+              data-mobile-menu
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-dropp-gray-200"
+          >
+            <!-- Mobile Search -->
+            <div class="relative mb-4">
+              <input
+                type="text"
+                placeholder="Search for..."
+                class="w-full pl-4 pr-10 py-2 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary"
+              />
+              <svg
+                class="absolute right-3 top-2.5 h-4 w-4 text-dropp-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </div>
+
+            <a
+              href="#"
+              class="block px-3 py-2 text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors"
+            >
+              Auctions
+            </a>
+            <a
+              href="#"
+              class="block px-3 py-2 text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors"
+            >
+              Sell
+            </a>
+            <a
+              href="/auth/login/index.html"
+              class="block px-3 py-2 text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors"
+            >
+              Login
+            </a>
+            <a
+              href="/auth/register/index.html"
+              class="block px-3 py-2 bg-dropp-primary text-white rounded-md text-sm font-medium hover:bg-dropp-primary/90 transition-colors"
+            >
+              Sign up
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="register-wrapper flex-1 flex flex-col justify-center py-12">
+          <!-- Welcome Section -->
+          <div class="welcome-section text-center mb-8">
+            <div
+              class="icon mx-auto w-12 h-12 bg-dropp-primary/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-dropp-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                ></path>
+              </svg>
+            </div>
+            <h1 class="text-2xl font-bold font-archivo text-dropp-dark mb-2">
+              Join Dropp
+            </h1>
+            <p class="text-dropp-gray-600 text-sm">
+              Create your account and start bidding on amazing items. Get
+              <strong class="text-dropp-primary">1000 credits</strong> to get
+              started!
+            </p>
+          </div>
+
+          <!-- Registration Form -->
+          <div class="form-container sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
+              <div class="form-header mb-6">
+                <h2
+                  class="text-xl font-semibold font-archivo text-dropp-dark text-center"
+                >
+                  Create Account
+                </h2>
+                <p class="text-dropp-gray-600 text-sm text-center mt-1">
+                  Enter your details below to create your account
+                </p>
+              </div>
+
+              <form id="register-form" data-form-type="register" novalidate>
+                <!-- Full Name -->
+                <div class="form-group">
+                  <label
+                    for="name"
+                    class="block text-sm font-medium text-dropp-dark mb-2"
+                    >Full Name</label
+                  >
+                  <div class="input-wrapper">
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      placeholder="John Doe"
+                      pattern="^[a-zA-ZÀ-ÿÆØÅæøå]+(?: [a-zA-ZÀ-ÿÆØÅæøå'\-]+)+$"
+                      title="Enter your full name (first, middle and last name, letters only)"
+                      minlength="3"
+                      maxlength="50"
+                      autocomplete="name"
+                      aria-describedby="name-error"
+                      class="block w-full px-3 py-3 border border-dropp-gray-200 rounded-md placeholder-dropp-gray-400 focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary text-sm"
+                    />
+                  </div>
+                  <div
+                    class="error-message"
+                    id="name-error"
+                    role="alert"
+                    aria-live="polite"
+                  ></div>
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group">
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-dropp-dark mb-2"
+                    >Email Address</label
+                  >
+                  <div class="input-wrapper">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      placeholder="john.doe@stud.noroff.no"
+                      pattern="[a-zA-Z0-9._%+\-]+@stud\.noroff\.no$"
+                      title="Email must end with @stud.noroff.no"
+                      autocomplete="email"
+                      aria-describedby="email-error"
+                      class="block w-full px-3 py-3 border border-dropp-gray-200 rounded-md placeholder-dropp-gray-400 focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary text-sm"
+                    />
+                  </div>
+                  <div class="form-hint text-xs text-dropp-gray-500 mt-1">
+                    You must use your stud.noroff.no email address to register.
+                  </div>
+                  <div
+                    class="error-message"
+                    id="email-error"
+                    role="alert"
+                    aria-live="polite"
+                  ></div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                  <label
+                    for="password"
+                    class="block text-sm font-medium text-dropp-dark mb-2"
+                    >Password</label
+                  >
+                  <div class="input-wrapper">
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      required
+                      placeholder="••••••••••••"
+                      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$"
+                      title="Password must be 8-20 characters, contain letters and numbers, and have no special characters"
+                      minlength="8"
+                      maxlength="20"
+                      autocomplete="new-password"
+                      aria-describedby="password-error"
+                      class="block w-full px-3 py-3 border border-dropp-gray-200 rounded-md placeholder-dropp-gray-400 focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary text-sm"
+                    />
+                  </div>
+                  <div class="form-hint text-xs text-dropp-gray-500 mt-1">
+                    Password must be at least 8 characters and max 20
+                    characters.
+                  </div>
+                  <div
+                    class="error-message"
+                    id="password-error"
+                    role="alert"
+                    aria-live="polite"
+                  ></div>
+                </div>
+
+                <!-- Terms and Privacy -->
+                <div class="form-group checkbox-group">
+                  <div class="checkbox-wrapper">
+                    <input
+                      type="checkbox"
+                      id="terms"
+                      name="terms"
+                      required
+                      aria-describedby="terms-error"
+                      class="h-4 w-4 text-dropp-primary focus:ring-dropp-primary border-dropp-gray-300 rounded"
+                    />
+                    <label
+                      for="terms"
+                      class="ml-2 block text-sm text-dropp-gray-600"
+                    >
+                      I agree to the
+                      <a
+                        href="#"
+                        class="text-dropp-primary hover:text-dropp-primary/80 font-medium"
+                        >Terms of Service</a
+                      >
+                      and
+                      <a
+                        href="#"
+                        class="text-dropp-primary hover:text-dropp-primary/80 font-medium"
+                        >Privacy Policy</a
+                      >
+                    </label>
+                  </div>
+                  <div
+                    class="error-message"
+                    id="terms-error"
+                    role="alert"
+                    aria-live="polite"
+                  ></div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group">
+                  <button
+                    type="submit"
+                    class="btn btn-primary w-full py-3 px-4"
+                  >
+                    Create Account
+                  </button>
+                </div>
+
+                <!-- Error Message -->
+                <div
+                  class="form-error"
+                  id="form-error"
+                  role="alert"
+                  aria-live="polite"
+                  style="display: none"
+                ></div>
+
+                <!-- Sign In Link -->
+                <div class="form-footer">
+                  <p class="text-sm text-dropp-gray-600">
+                    Already have an account?
+                    <a
+                      href="/auth/login.html"
+                      class="font-medium text-dropp-primary hover:text-dropp-primary/80"
+                      >Login here</a
+                    >
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-dropp-gray-200 mt-auto">
+      <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+          <a
+            href="/"
+            class="text-2xl font-bold font-archivo text-dropp-primary"
+          >
+            DROPP//
+          </a>
+          <p class="text-dropp-gray-500 text-sm mt-2">
+            Copyright © 2024 Dropp Corp<br />
+            | All Rights Reserved
+          </p>
+        </div>
+
+        <!-- Footer Links -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+        >
+          <!-- Company -->
+          <div>
+            <h3
+              class="text-lg font-semibold font-archivo text-dropp-secondary mb-4"
+            >
+              Company
+            </h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >Contact us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Support -->
+          <div>
+            <h3
+              class="text-lg font-semibold font-archivo text-dropp-secondary mb-4"
+            >
+              Support
+            </h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >Getting started</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >Help center</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >Chat support</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >Server status</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Follow us -->
+          <div>
+            <h3
+              class="text-lg font-semibold font-archivo text-dropp-secondary mb-4"
+            >
+              Follow us
+            </h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >Twitter</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >YouTube</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-dropp-gray-600 hover:text-dropp-primary text-sm"
+                  >TikTok</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | DROPP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css"/>
+</head>
+  <body class="bg-dropp-gray-50 font-ibm min-h-screen">
     <header>
 
       <div>
@@ -22,12 +546,10 @@
       </div>
       <div class="container">
         <div class="header-content">
-          <!-- Logo -->
           <div class="logo">
             <a href="/">DROPP//</a>
           </div>
 
-          <!-- Mobile menu button -->
           <button class="mobile-menu-btn" type="button">
             <span></span>
             <span></span>
@@ -37,14 +559,11 @@
       </div>
     </header>
 
-    <!-- Main Content -->
     <main>
       <div class="container">
         <div class="register-wrapper">
-          <!-- Welcome Section -->
-          <div class="welcome-section bg-amber-600">
+          <div class="welcome-section">
             <div class="icon">
-              <!-- Icon placeholder -->
             </div>
             <h1>Join Dropp</h1>
             <p>
@@ -53,7 +572,6 @@
             </p>
           </div>
 
-          <!-- Registration Form -->
           <div class="form-container">
             <div class="form-header">
               <h2>Create Account</h2>
@@ -61,8 +579,6 @@
             </div>
 
             <form id="register-form" data-form-type="register" novalidate>
-              <!-- Full Name -->
-              <!-- unsure about maxlength and autocomplete-->
               <div class="form-group">
                 <label for="name">Full Name</label>
                 <div class="input-wrapper">
@@ -88,7 +604,6 @@
                 ></div>
               </div>
 
-              <!-- Email Address check regex and add to login too-->
               <div class="form-group">
                 <label for="email">Email Address</label>
                 <div class="input-wrapper">
@@ -115,7 +630,6 @@
                 ></div>
               </div>
 
-              <!-- Password check regex and add to login too-->
               <div class="form-group">
                 <label for="password">Password</label>
                 <div class="input-wrapper">
@@ -144,7 +658,7 @@
                 ></div>
               </div>
 
-              <!-- Terms and Privacy -->
+              
               <div class="form-group checkbox-group">
                 <div class="checkbox-wrapper">
                   <input
@@ -167,14 +681,13 @@
                 ></div>
               </div>
 
-              <!-- Submit Button -->
+            
               <div class="form-group">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary w-full py-3 px-4">
                   Create Account
                 </button>
               </div>
 
-              <!-- Error Message -->
               <div
                 class="form-error"
                 id="form-error"
@@ -183,7 +696,6 @@
                 style="display: none"
               ></div>
 
-              <!-- Sign In Link -->
               <div class="form-footer">
                 <p>
                   Already have an account?
@@ -196,9 +708,9 @@
       </div>
     </main>
 
-    <!-- Footer -->
+  
     <footer></footer>
 
     <script type="module" src="/src/main.js"></script>
   </body>
-</html>
+</html> -->

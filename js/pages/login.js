@@ -1,4 +1,4 @@
-import { loginUser } from "../api/auth";
+import { loginUser } from "../api/auth.js";
 
 export function initLogin() {
     const loginForm = document.querySelector("#login-form");
