@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Listing | DROPP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css"/>
+  </head>
+  <body class="bg-dropp-gray-50 font-ibm min-h-screen">
+    <header class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <a href="/" class="text-2xl font-bold font-archivo text-dropp-primary">
+              DROPP//
+            </a>
+          </div>
+        
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex items-center space-x-8">
+            <a href="/profile/index.html" class="text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors">
+              Auctions
+            </a>
+            <a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors">
+              Sell
+            </a>
+            
+            <!-- Search Bar -->
+            <div class="relative">
+              <input 
+                type="text" 
+                placeholder="Search for..."
+                class="w-64 pl-4 pr-10 py-2 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary"
+              />
+              <svg class="absolute right-3 top-2.5 h-4 w-4 text-dropp-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            
+            <!-- Desktop Auth Container -->
+            <div id="desktop-auth" class="flex items-center space-x-4">
+              <!-- Content loaded by JavaScript -->
+            </div>
+          </nav>
+          
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button type="button" class="text-dropp-gray-500 hover:text-dropp-gray-700" data-mobile-menu>
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+    
+        <!-- Mobile Navigation Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+          <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-dropp-gray-200">
+            <!-- Mobile Search -->
+            <div class="relative mb-4">
+              <input 
+                type="text" 
+                placeholder="Search for..."
+                class="w-full pl-4 pr-10 py-2 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary"
+              />
+              <svg class="absolute right-3 top-2.5 h-4 w-4 text-dropp-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            
+            <a href="#" class="block px-3 py-2 text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors">
+              Auctions
+            </a>
+            <a href="#" class="block px-3 py-2 text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors">
+              Sell
+            </a>
+            
+            <!-- Mobile Auth Container -->
+            <div id="mobile-auth" class="space-y-1">
+              <!-- Content loaded by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Page Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold font-archivo text-dropp-dark mb-2">
+          Create New Listing
+        </h1>
+        <p class="text-dropp-gray-600">
+          Create an auction listing for other people to bid on. Fill in the details below to get started.
+        </p>
+      </div>
+
+      <!-- Form Container -->
+      <div class="bg-white rounded-lg shadow-sm p-6 md:p-8">
+        <form id="create-listing-form" novalidate>
+          <!-- Basic Information Section -->
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold font-archivo text-dropp-dark mb-6">
+              Basic Information
+            </h2>
+            
+            <!-- Title Field -->
+            <div class="form-group">
+              <label for="title" class="block text-sm font-medium text-dropp-gray-700 mb-2">
+                Title <span class="text-dropp-red-500" aria-label="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                required
+                maxlength="100"
+                placeholder="Enter a descriptive title for your item"
+                class="w-full px-4 py-3 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary transition-colors duration-200"
+                aria-describedby="title-error title-counter"
+              />
+              <div class="flex justify-between items-center mt-1">
+                <div id="title-error" class="error-message" role="alert"></div>
+                <div id="title-counter" class="text-sm text-dropp-gray-500 font-medium">
+                  0/100 characters
+                </div>
+              </div>
+            </div>
+
+            <!-- Description Field -->
+            <div class="form-group">
+              <label for="description" class="block text-sm font-medium text-dropp-gray-700 mb-2">
+                Description <span class="text-dropp-red-500" aria-label="required">*</span>
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                required
+                maxlength="500"
+                rows="4"
+                placeholder="Provide a detailed description of your item including condition, features and any relevant details"
+                class="w-full px-4 py-3 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary transition-colors duration-200 resize-none"
+                aria-describedby="description-error description-counter"
+              ></textarea>
+              <div class="flex justify-between items-center mt-1">
+                <div id="description-error" class="error-message" role="alert"></div>
+                <div id="description-counter" class="text-sm text-dropp-gray-500 font-medium">
+                  0/500 characters
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Media Gallery Section -->
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold font-archivo text-dropp-dark mb-6">
+              Media Gallery
+            </h2>
+            
+            <!-- Image URL Field -->
+            <div class="form-group">
+              <label for="imageUrl" class="block text-sm font-medium text-dropp-gray-700 mb-2">
+                Image URL <span class="text-dropp-red-500" aria-label="required">*</span>
+              </label>
+              <div class="flex gap-3">
+                <input
+                  type="url"
+                  id="imageUrl"
+                  name="imageUrl"
+                  required
+                  placeholder="https://example.com/image.jpg"
+                  class="flex-1 px-4 py-3 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary transition-colors duration-200"
+                  aria-describedby="imageUrl-error imageUrl-help"
+                />
+                <button
+                  type="button"
+                  id="add-image-btn"
+                  class="btn btn-primary btn-md flex-shrink-0"
+                  aria-label="Add image URL to gallery"
+                >
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                  </svg>
+                  Add Image
+                </button>
+              </div>
+              <div id="imageUrl-error" class="error-message" role="alert"></div>
+              <p id="imageUrl-help" class="text-xs text-dropp-gray-500 mt-1">
+                Must be a fully formed URL that links to a live and publicly accessible image
+              </p>
+            </div>
+
+            <!-- Image Gallery Preview -->
+            <div id="image-gallery" class="hidden">
+              <h3 class="text-sm font-medium text-dropp-gray-700 mb-3">Added Images</h3>
+              <div id="image-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Dynamic image previews will be added here -->
+              </div>
+            </div>
+          </section>
+
+          <!-- Tags Section -->
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold font-archivo text-dropp-dark mb-6">
+              Tags
+            </h2>
+            
+            <div class="form-group">
+              <label for="tagInput" class="block text-sm font-medium text-dropp-gray-700 mb-2">
+                Add a tag
+              </label>
+              <div class="flex gap-3">
+                <input
+                  type="text"
+                  id="tagInput"
+                  name="tagInput"
+                  maxlength="20"
+                  placeholder="Add a tag"
+                  class="flex-1 px-4 py-3 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary transition-colors duration-200"
+                  aria-describedby="tagInput-error"
+                />
+                <button
+                  type="button"
+                  id="add-tag-btn"
+                  class="btn btn-primary btn-md flex-shrink-0"
+                  aria-label="Add tag to listing"
+                >
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                  </svg>
+                  Add Tag
+                </button>
+              </div>
+              <div id="tagInput-error" class="error-message" role="alert"></div>
+            </div>
+
+            <!-- Tags Display -->
+            <div id="tags-container" class="hidden">
+              <h3 class="text-sm font-medium text-dropp-gray-700 mb-3">Added Tags</h3>
+              <div id="tags-list" class="flex flex-wrap gap-2">
+                <!-- Dynamic tags will be added here -->
+              </div>
+            </div>
+          </section>
+
+          <!-- Auction Settings Section -->
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold font-archivo text-dropp-dark mb-6">
+              Auction Settings
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Date Field -->
+              <div class="form-group">
+                <label for="auctionDate" class="block text-sm font-medium text-dropp-gray-700 mb-2">
+                  Auction End Date <span class="text-dropp-red-500" aria-label="required">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="auctionDate"
+                  name="auctionDate"
+                  required
+                  class="w-full px-4 py-3 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary transition-colors duration-200"
+                  aria-describedby="auctionDate-error"
+                />
+                <div id="auctionDate-error" class="error-message" role="alert"></div>
+              </div>
+
+              <!-- Time Field -->
+              <div class="form-group">
+                <label for="auctionTime" class="block text-sm font-medium text-dropp-gray-700 mb-2">
+                  Time <span class="text-dropp-red-500" aria-label="required">*</span>
+                </label>
+                <input
+                  type="time"
+                  id="auctionTime"
+                  name="auctionTime"
+                  required
+                  class="w-full px-4 py-3 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary transition-colors duration-200"
+                  aria-describedby="auctionTime-error"
+                />
+                <div id="auctionTime-error" class="error-message" role="alert"></div>
+              </div>
+            </div>
+
+            <p class="text-sm text-dropp-gray-600 mt-4 p-4 bg-dropp-gray-50 rounded-md">
+              <svg class="w-4 h-4 inline mr-2 text-dropp-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              Your auction will automatically end at the specified date and time. The highest bidder will win the item.
+            </p>
+          </section>
+
+          <!-- Form Actions -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-end pt-6 border-t border-dropp-gray-200">
+            <button
+              type="button"
+              id="cancel-btn"
+              class="btn btn-md px-6 py-3 border border-dropp-gray-300 text-dropp-gray-700 bg-white hover:bg-dropp-gray-50 focus-visible:ring-dropp-gray-500"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              id="submit-btn"
+              class="btn btn-primary btn-md px-6 py-3"
+            >
+              Create Listing
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-dropp-gray-200 mt-16">
+      <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+          <a href="/" class="text-2xl font-bold font-archivo text-dropp-primary">
+            DROPP//
+          </a>
+          <p class="text-dropp-gray-500 text-sm mt-2">
+            Copyright © 2024 Dropp Corp<br>
+            | All Rights Reserved
+          </p>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+          <!-- Company -->
+          <div>
+            <h3 class="text-lg font-semibold font-archivo text-dropp-secondary mb-4">
+              Company
+            </h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">About</a></li>
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Careers</a></li>
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Contact us</a></li>
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Blog</a></li>
+            </ul>
+          </div>
+
+          <!-- Support -->
+          <div>
+            <h3 class="text-lg font-semibold font-archivo text-dropp-secondary mb-4">
+              Support
+            </h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Getting started</a></li>
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Help center</a></li>
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Chat support</a></li>
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Server status</a></li>
+            </ul>
+          </div>
+
+          <!-- Follow us -->
+          <div>
+            <h3 class="text-lg font-semibold font-archivo text-dropp-secondary mb-4">
+              Follow us
+            </h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Twitter</a></li>
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Instagram</a></li>
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">YouTube</a></li>
+              <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">TikTok</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
