@@ -61,7 +61,7 @@ function showGuestLinks(containers) {
 
 function createUserSection(user, type) {
     const avatar = createAvatar(user);
-    const userName = `<span class="text-sm font-medium text-dropp-dark">${user.name}</span>`;
+    const userName = `<a href="/profile/" class="text-sm font-medium text-dropp-dark">${user.name}</a>`;
     const logoutBtn = createLogoutButton(type);
     
     if (type === 'desktop') {
@@ -96,12 +96,13 @@ function createAvatar(user) {
     const classes = 'w-8 h-8 rounded-full mr-3';
     
     return `
-        <img 
+        <a href="/profile/" class="inline-block"> <img 
             src="${avatarUrl}" 
             alt="${user.name}"
             class="${classes}"
             onerror="this.src='/placeholder.svg?height=32&width=32'"
         />
+        </a>
     `;
 }
 
