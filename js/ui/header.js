@@ -106,6 +106,7 @@ function createAvatar(user) {
     `;
 }
 
+
 function createLogoutButton(type) {
     const baseClasses = 'text-sm text-dropp-gray-600 hover:text-dropp-primary transition-colors';
     
@@ -147,6 +148,8 @@ function handleLogout() {
         logout();
     }
 }
+
+window.initializeHeader = initializeHeader
 // export function initializeHeader() {
 //     const mobileMenuButton = document.querySelector("button[data-mobile-menu]")
 //     const mobileMenu = document.getElementById("mobile-menu")

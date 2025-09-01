@@ -49,6 +49,10 @@
     @apply bg-dropp-secondary p-4 text-white hover:bg-dropp-secondary/90 focus-visible:ring-dropp-secondary;
   }
 
+  .btn-light { 
+    @apply bg-dropp-gray-200  hover:bg-dropp-light focus-visible:ring-dropp-primary
+  }
+
   /* Navigation link component for consistent hover states */
   .nav-link {
     @apply text-dropp-gray-600 hover:text-dropp-primary font-medium transition-colors duration-200;
