@@ -1,76 +1,177 @@
-import { initBioEditor } from "../components/bioEditor.js"
-import { getMyProfile, updateMyProfile } from "../api/profiles.js" 
+import { initBioEditor } from "../components/bioEditor.js";
+import { initAvatarEditor } from "../components/avatarEditor.js";
+import { getMyProfile, updateMyProfile } from "../api/profiles.js";
+import { updateCurrentUser } from "../utils/authUtils.js";
+
+let bioEditorInitialized = false;
+let avatarEditorInitialized = false;
 
 export async function initProfile() {
-  console.log("Profile page initialized successfully")
+  console.log("Profile page initialized successfully");
 
   try {
-    const profileData = await getMyProfile()
-    const data = profileData.data
+    const profileData = await getMyProfile();
+    const data = profileData.data;
 
-    renderProfileData(data)
-    initializeBioEditor(data.bio)
-    
+    renderProfileData(data);
+    initializeBioEditor(data.bio);
+    initializeAvatarEditor(data.avatar);
   } catch (error) {
-    console.error("Failed to load profile:", error)
-    showErrorMessage("Failed to load profile data")
+    console.error("Failed to load profile:", error);
+    showErrorMessage("Failed to load profile data");
   }
 }
 
 function renderProfileData(data) {
-  const avatarContainer = document.querySelector("#profile-user-img")
+  // Avatar handling
+  const avatarContainer = document.querySelector("#profile-user-img");
   if (data.avatar && data.avatar.url) {
-    const img = document.createElement("img")
-    img.src = data.avatar.url
-    img.alt = data.avatar.alt || "Profile avatar"
-    img.className = "w-24 h-24 rounded-full object-cover"
+    const img = document.createElement("img");
+    img.src = data.avatar.url;
+    img.alt = data.avatar.alt || "Profile avatar";
+    img.className = "w-24 h-24 rounded-full object-cover";
 
-    avatarContainer.innerHTML = ""
-    avatarContainer.appendChild(img)
+    avatarContainer.innerHTML = ""; // Clear SVG
+    avatarContainer.appendChild(img);
   }
 
-  document.querySelector("#profile-user-name").textContent = data.name
-  document.querySelector("#profile-user-bio").textContent = data.bio || "No bio available"
-  document.querySelector("#profile-credits").textContent = data.credits
-  document.querySelector("#profile-listings-count").textContent = data._count.listings
-  document.querySelector("#profile-bids-won-count").textContent = data._count.bids_won || data._count.wins || 0
+  document.querySelector("#profile-user-name").textContent = data.name;
+  document.querySelector("#profile-user-bio").textContent =
+    data.bio || "No bio available";
+  document.querySelector("#profile-credits").textContent = data.credits;
+  document.querySelector("#profile-listings-count").textContent =
+    data._count.listings;
+  document.querySelector("#profile-bids-won-count").textContent =
+    data._count.bids_won || data._count.wins || 0;
 }
 
 function initializeBioEditor(currentBio) {
-  const bioElement = document.querySelector("#profile-user-bio")
-  const editButton = document.querySelector("#edit-bio")
+  if (bioEditorInitialized) return;
+
+  const bioElement = document.querySelector("#profile-user-bio");
+  const editButton = document.querySelector("#edit-bio");
 
   if (!bioElement || !editButton) {
-    console.error("Bio editor elements not found")
-    return
+    console.error("Bio editor elements not found");
+    return;
   }
 
-  initBioEditor(bioElement, editButton, currentBio, handleBioUpdate)
+  //read up on callback
+  initBioEditor(
+    bioElement,
+    editButton,
+    currentBio,
+    handleBioUpdate,
+    () => hideOtherEditButtons("bio"),
+    () => showAllEditButtons()
+  );
+
+  bioEditorInitialized = true;
+}
+
+function initializeAvatarEditor(currentAvatar) {
+  if (avatarEditorInitialized) return;
+
+  const formElement = document.querySelector("#avatar-edit-form");
+  const editButton = document.querySelector("#change-avatar");
+
+  if (!formElement || !editButton) {
+    console.error("Avatar editor elements not found");
+    return;
+  }
+
+  initAvatarEditor(
+    formElement,
+    editButton,
+    currentAvatar,
+    handleAvatarUpdate,
+    () => hideOtherEditButtons("avatar"),
+    () => showAllEditButtons()
+  );
+
+  avatarEditorInitialized = true;
 }
 
 async function handleBioUpdate(newBio) {
   try {
-    await updateMyProfile({ bio: newBio })
-    console.log("Bio updated successfully")
-    return Promise.resolve()
+    await updateMyProfile({ bio: newBio });
+    console.log("Bio updated successfully");
+    return Promise.resolve();
   } catch (error) {
-    console.error("Failed to update bio:", error)
-    showErrorMessage("Failed to update bio")
-    return Promise.reject(error)
+    console.error("Failed to update bio:", error);
+    showErrorMessage("Failed to update bio");
+    return Promise.reject(error);
   }
 }
 
+async function handleAvatarUpdate(avatarData) {
+  try {
+    await updateMyProfile({ avatar: avatarData });
+    console.log("Avatar updated successfully");
 
-  // TODO implement a ´ notification or error display here
+    updateCurrentUser({ avatar: avatarData });
+
+    if (window.initializeHeader) {
+      window.initializeHeader();
+    }
+
+    showErrorMessage("Avatar updated successfully!");
+
+    const avatarContainer = document.querySelector("#profile-user-img");
+    const img = document.createElement("img");
+    img.src = avatarData.url;
+    img.alt = avatarData.alt || "Profile avatar";
+    img.className = "w-24 h-24 rounded-full object-cover";
+    avatarContainer.innerHTML = "";
+    avatarContainer.appendChild(img);
+
+    return Promise.resolve();
+  } catch (error) {
+    console.error("Failed to update avatar:", error);
+    showErrorMessage("Failed to update avatar");
+    return Promise.reject(error);
+  }
+}
+
+// coordinate all editors
+function hideOtherEditButtons(activeEditor) {
+  console.log(`Hiding other editors, ${activeEditor} is now active`);
+
+  const bioEditBtn = document.querySelector("#edit-bio");
+  const avatarEditBtn = document.querySelector("#change-avatar");
+
+  if (activeEditor === "bio" && avatarEditBtn) {
+    avatarEditBtn.style.display = "none";
+  } else if (activeEditor === "avatar" && bioEditBtn) {
+    bioEditBtn.style.display = "none";
+  }
+}
+
+function showAllEditButtons() {
+  console.log("Showing all edit buttons");
+
+  const bioEditBtn = document.querySelector("#edit-bio");
+  const avatarEditBtn = document.querySelector("#change-avatar");
+
+  if (bioEditBtn) {
+    bioEditBtn.style.display = "block";
+  }
+  if (avatarEditBtn) {
+    avatarEditBtn.style.display = "block";
+  }
+}
+
 function showErrorMessage(message) {
-  console.error(message)
-  const errorDiv = document.createElement("div")
-  errorDiv.className = "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"
-  errorDiv.textContent = message
+  console.error(message);
 
-  const main = document.querySelector("main")
+  const errorDiv = document.createElement("div");
+  errorDiv.className =
+    "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4";
+  errorDiv.textContent = message;
+
+  const main = document.querySelector("main");
   if (main) {
-    main.insertBefore(errorDiv, main.firstChild)
-    setTimeout(() => errorDiv.remove(), 4000)
+    main.insertBefore(errorDiv, main.firstChild);
+    setTimeout(() => errorDiv.remove(), 5000);
   }
 }
