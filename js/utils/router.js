@@ -3,6 +3,9 @@ export function initializeApp() {
   console.log("Current path:", currentPath);
 
   switch (true) {
+    case currentPath === "/" || currentPath === "/index.html":
+      initializeLandingPage();
+      break;
     case currentPath.includes("/auth/register"):
       initializeRegisterPage();
       break;
@@ -12,13 +15,23 @@ export function initializeApp() {
     case currentPath.includes("/profile"):
       initializeProfilePage();
       break;
-    case currentPath === "/" || currentPath.includes("index"):
-      initializeLandingPage();
+    case currentPath.includes("/create-listing"):
+      initializeCreateListingPage();
       break;
+    // case currentPath.includes("/listing-details"):
+    //   initializeListingsDetailsPage();
+    //   break;
+
     default:
       console.log("Unknown route:", currentPath);
   }
 }
+async function initializeLandingPage() {
+  console.log("Loading landing page...");
+  const { initLandingPage } = await import("../pages/landingPage.js");
+  initLandingPage();
+}
+
 async function initializeRegisterPage() {
   console.log("Loading register page...");
   const { initRegister } = await import("../pages/register.js");
@@ -32,13 +45,19 @@ async function initializeLoginPage() {
 }
 
 async function initializeProfilePage() {
-    console.log('Loading profile page...');
-    const { initProfile } = await import('../pages/profile.js');
-    initProfile();
+  console.log("Loading profile page...");
+  const { initProfile } = await import("../pages/profile.js");
+  initProfile();
 }
 
-async function initializeLandingPage() {
-  console.log("Loading landing page...");
-  const { initLandingPage } = await import("../pages/landingPage.js");
-  initLandingPage();
+async function initializeCreateListingPage() {
+  console.log("Loading Create New Listing page...");
+  const { initCreateNewListing } = await import("../pages/createListing.js");
+  initCreateNewListing();
 }
+
+// async function initializeListingsDetailsPage() {
+//   console.log("loading listing details page...");
+//   const { initListingsDetailsPage } = await import("..pages/listingDetails.js");
+//   initListingsDetailsPage;
+// }
