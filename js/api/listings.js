@@ -47,3 +47,36 @@ export async function fetchNewestListings() {
   }
 }
 
+export async function fetchListingDetail() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const listingId = urlParams.get("id");
+
+  if (!listingId) {
+    throw new Error("No listing ID provided in URL");
+  }
+
+  const url = `${
+    API_CONFIG.BASE_URL
+  }${API_CONFIG.ENDPOINTS.AUCTION.LISTING_DETAIL.replace(
+    "<id>",
+    listingId
+  )}?_seller=true&_bids=true`;
+
+  try {
+    const headers = isLoggedIn()
+      ? getAuthHeaders()
+      : { "Content-Type": "application/json" };
+
+    const response = await fetch(url, { headers });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch listing detail");
+    }
+    const data = await response.json();
+    console.log("listing detail:", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching listing detail:", error);
+    throw error;
+  }
+}

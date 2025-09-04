@@ -15,6 +15,7 @@ export const API_CONFIG = {
     AUCTION: {
       BASE: "/auction",
       LISTINGS: "/auction/listings",
+      LISTING_DETAIL: "/auction/listings/<id>",
       PROFILES: "/auction/profiles",
       SEARCH: "/auction/listings/search",
     },

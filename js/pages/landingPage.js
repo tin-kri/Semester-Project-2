@@ -1,19 +1,3 @@
-// import { getFromLocalStorage } from "../utils/storage";
-// const displayContainer = document.getElementById('display-container');
-
-//fetch posts from api
-// use auth access token
-//render posts
-
-// async function fetchListings() {}
-// getFromLocalStorage
-// try
-
-// catch(error)
-
-// function main()
-// js/pages/landingPage.js
-
 import {
   fetchEndingSoonListings,
   fetchNewestListings,
@@ -37,7 +21,6 @@ async function loadListings() {
     ]);
 
     renderEndingSoon(endingSoonData.data || []);
-
     renderNewest(newestData.data || []);
   } catch (error) {
     console.error("Failed to load listings:", error);
@@ -76,9 +59,7 @@ function renderNewest(listings) {
   setHTML("#newest-listings", cards);
 }
 
-// Global function for viewing listings (temporary)
+// Navigation function for viewing individual listings
 window.viewListing = function (listingId) {
-  console.log("Viewing listing:", listingId);
-  alert(`Will navigate to listing: ${listingId}`);
-  // TODO: Navigate to listing detail page
+  window.location.href = `/listing-details/index.html?id=${listingId}`;
 };
