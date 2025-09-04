@@ -18,9 +18,9 @@ export function initializeApp() {
     case currentPath.includes("/create-listing"):
       initializeCreateListingPage();
       break;
-    // case currentPath.includes("/listing-details"):
-    //   initializeListingsDetailsPage();
-    //   break;
+    case currentPath.includes("/listing-details"):
+      initializeListingsDetailsPage();
+      break;
 
     default:
       console.log("Unknown route:", currentPath);
@@ -56,8 +56,10 @@ async function initializeCreateListingPage() {
   initCreateNewListing();
 }
 
-// async function initializeListingsDetailsPage() {
-//   console.log("loading listing details page...");
-//   const { initListingsDetailsPage } = await import("..pages/listingDetails.js");
-//   initListingsDetailsPage;
-// }
+async function initializeListingsDetailsPage() {
+  console.log("loading listing details page...");
+  const { initListingsDetailsPage } = await import(
+    "../pages/listingDetails.js"
+  );
+  initListingsDetailsPage();
+}

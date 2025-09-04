@@ -76,9 +76,6 @@ function renderNewest(listings) {
   setHTML("#newest-listings", cards);
 }
 
-// Global function for viewing listings (temporary)
 window.viewListing = function (listingId) {
-  console.log("Viewing listing:", listingId);
-  alert(`Will navigate to listing: ${listingId}`);
-  // TODO: Navigate to listing detail page
+  window.location.href = `/listing-details?id=${listingId}`;
 };
