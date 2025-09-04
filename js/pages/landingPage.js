@@ -77,5 +77,5 @@ function renderNewest(listings) {
 }
 
 window.viewListing = function (listingId) {
-  window.location.href = `/listing-details?id=${listingId}`;
+  window.location.href = `/listing-details/index.html?id=${listingId}`;
 };
