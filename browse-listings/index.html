@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Listings - DROPP//</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="bg-dropp-gray-50 font-ibm">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="/" class="text-dropp-primary font-archivo font-bold text-2xl">DROPP//</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/auctions" class="nav-link">Auctions</a>
+                    <a href="/sell" class="nav-link">Sell</a>
+                </nav>
+
+                <!-- Search Bar -->
+                <div class="hidden md:flex flex-1 max-w-lg mx-8">
+                    <div class="relative w-full">
+                        <input type="text" id="header-search" placeholder="Search for..." class="search-input w-full">
+                        <button class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <svg class="h-5 w-5 text-dropp-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Auth Section -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="/login" class="nav-link">Login</a>
+                    <a href="/signup" class="text-dropp-secondary hover:text-dropp-secondary/80 font-medium">Sign up</a>
+                    <div class="w-8 h-8 bg-dropp-gray-300 rounded-full"></div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-dropp-gray-500 hover:text-dropp-gray-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="md:hidden px-4 pb-4">
+            <div class="relative">
+                <input type="text" id="mobile-search" placeholder="Search for..." class="search-input w-full">
+                <button class="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <svg class="h-5 w-5 text-dropp-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Breadcrumb -->
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <nav class="breadcrumb">
+                <a href="/" class="breadcrumb-link">Home</a>
+                <span class="breadcrumb-separator">//</span>
+                <span class="breadcrumb-current">Browse Listings</span>
+            </nav>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Desktop Filters Sidebar -->
+            <aside class="hidden lg:block w-80 flex-shrink-0">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="font-archivo font-semibold text-lg text-dropp-gray-900">Filters</h2>
+                        <button id="clear-filters" class="text-dropp-secondary text-sm hover:text-dropp-secondary/80">Clear All</button>
+                    </div>
+
+                    <!-- Search Filter -->
+                    <div class="mb-6">
+                        <label for="search-filter" class="block text-sm font-medium text-dropp-gray-700 mb-2">Search</label>
+                        <input type="text" id="search-filter" placeholder="Search listings..." class="search-input w-full">
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-dropp-gray-700 mb-3">Price Range (Credits)</h3>
+                        <div class="space-y-2">
+                            <input type="number" id="min-price" placeholder="Min" class="search-input w-full">
+                            <input type="number" id="max-price" placeholder="Max" class="search-input w-full">
+                        </div>
+                    </div>
+
+                    <!-- Popular Tags -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-dropp-gray-700 mb-3">Popular Tags</h3>
+                        <div id="popular-tags" class="space-y-2">
+                            <!-- Tags will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="flex-1">
+                <!-- Mobile Controls -->
+                <div class="lg:hidden flex items-center justify-between mb-6">
+                    <button id="mobile-filters-btn" class="btn btn-outline flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+                        </svg>
+                        Filters
+                    </button>
+                    <select id="mobile-sort" class="btn btn-outline">
+                        <option value="ending-soon">Ending Soon</option>
+                        <option value="newest">Newest</option>
+                        <option value="popularity">Most Popular</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                    </select>
+                </div>
+
+                <!-- Desktop Controls -->
+                <div class="hidden lg:flex items-center justify-between mb-6">
+                    <div id="results-count" class="text-dropp-gray-600">
+                        <!-- Results count will be shown here -->
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <label for="desktop-sort" class="text-sm font-medium text-dropp-gray-700">Sort by:</label>
+                        <select id="desktop-sort" class="btn btn-outline">
+                            <option value="ending-soon">Ending Soon</option>
+                            <option value="newest">Newest</option>
+                            <option value="popularity">Most Popular</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Listings Grid -->
+                <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+                    <!-- Listings will be loaded here -->
+                </div>
+
+                <!-- Loading State -->
+                <div id="loading-skeleton" class="hidden grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <!-- Skeleton cards will be generated here -->
+                </div>
+
+                <!-- Pagination -->
+                <div id="pagination" class="flex justify-center">
+                    <!-- Pagination will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Filters Modal -->
+    <div id="mobile-filters-modal" class="fixed inset-0 z-50 hidden">
+        <div class="fixed inset-0 bg-black bg-opacity-50" id="modal-backdrop"></div>
+        <div class="fixed inset-y-0 right-0 max-w-sm w-full bg-white shadow-xl transform translate-x-full transition-transform duration-300" id="modal-content">
+            <div class="flex items-center justify-between p-4 border-b">
+                <h2 class="font-archivo font-semibold text-lg">Filters</h2>
+                <button id="close-modal" class="text-dropp-gray-500 hover:text-dropp-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4 overflow-y-auto h-full pb-20">
+                <!-- Mobile filter content (same as desktop) -->
+                <div class="space-y-6">
+                    <div>
+                        <label for="mobile-search-filter" class="block text-sm font-medium text-dropp-gray-700 mb-2">Search</label>
+                        <input type="text" id="mobile-search-filter" placeholder="Search listings..." class="search-input w-full">
+                    </div>
+                    
+                    <div>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="mobile-active-only" class="rounded border-dropp-gray-300 text-dropp-primary focus:ring-dropp-primary">
+                            <span class="ml-2 text-sm text-dropp-gray-700">Active listings only</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-medium text-dropp-gray-700 mb-3">Price Range (Credits)</h3>
+                        <div class="space-y-2">
+                            <input type="number" id="mobile-min-price" placeholder="Min" class="search-input w-full">
+                            <input type="number" id="mobile-max-price" placeholder="Max" class="search-input w-full">
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-medium text-dropp-gray-700 mb-3">Popular Tags</h3>
+                        <div id="mobile-popular-tags" class="space-y-2">
+                            <!-- Tags will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t">
+                <div class="flex space-x-3">
+                    <button id="mobile-clear-filters" class="btn btn-outline flex-1">Clear All</button>
+                    <button id="apply-filters" class="btn btn-primary flex-1">Apply Filters</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <div class="text-dropp-primary font-archivo font-bold text-2xl mb-4">DROPP//</div>
+                    <p class="text-dropp-gray-600 text-sm">Copyright © 2024 Dropp Corp</p>
+                    <p class="text-dropp-gray-600 text-sm">All Rights Reserved</p>
+                </div>
+                
+                <div>
+                    <h3 class="font-archivo font-semibold text-dropp-secondary mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">About</a></li>
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Careers</a></li>
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Contact us</a></li>
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-archivo font-semibold text-dropp-secondary mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Getting started</a></li>
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Help center</a></li>
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Chat support</a></li>
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Server status</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-archivo font-semibold text-dropp-secondary mb-4">Follow us</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Twitter</a></li>
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">Instagram</a></li>
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">YouTube</a></li>
+                        <li><a href="#" class="text-dropp-gray-600 hover:text-dropp-primary text-sm">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/src/main.js"></script>
+</body>
+</html>
