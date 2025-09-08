@@ -1,19 +1,14 @@
-// init browse page
-// load browse listings
-//#listing-grid
-//#loading-skeleton
-//#pagination
 
 import { fetchBrowseListings } from "../api/listings";
 import { showError, showLoading, showEmpty, setHTML } from "../utils/dom";
-
+import { createListingCard } from "../components/listingCard";
 export function initBrowseListingsPage() {
   console.log("loading browse listings page...");
   loadBrowseListings();
 }
 
 async function loadBrowseListings() {
-  showLoading("#listing-grid", "load listing grid...");
+  showLoading("#listings-grid", "load listings grid...");
 
   try {
     const [browseListingsData] = await Promise.all([fetchBrowseListings()]);
@@ -25,11 +20,11 @@ async function loadBrowseListings() {
   }
 }
 
-function renderBrowseListings(listings) {
-  if (listings.length === 0) {
-    showEmpty("#listing-grid", "No auctions rendered");
-    return;
-  }
-  const cards = listings;
-  setHTML("#listing-grid", cards);
-}
+// function renderBrowseListings(listings) {
+//   if (listings.length === 0) {
+//     showEmpty("#listings-grid", "No auctions rendered");
+//     return;
+//   }
+//   const cards = listings;
+//   setHTML("#listings-grid", cards);
+// }

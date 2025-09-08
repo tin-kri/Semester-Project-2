@@ -21,6 +21,7 @@ export function initializeApp() {
     case currentPath.includes("/listing-details"):
       initializeListingsDetailsPage();
       break;
+
     case currentPath.includes("/browse-listings"):
       initializeBrowseListingsPage();
       break;
@@ -35,10 +36,9 @@ async function initializeLandingPage() {
 }
 
 async function initializeBrowseListingsPage() {
-  console.log("Loading Browse Listings page...")
-  const {initBrowse} = await import("../pages/listings.js")
-  initBrowse();
-  
+  console.log("Loading Browse Listings page...");
+  const { initBrowseListingsPage } = await import("../pages/listings.js");
+  initBrowseListingsPage();
 }
 async function initializeRegisterPage() {
   console.log("Loading register page...");
