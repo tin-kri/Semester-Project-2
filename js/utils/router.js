@@ -22,6 +22,9 @@ export function initializeApp() {
       initializeListingsDetailsPage();
       break;
 
+    case currentPath.includes("/browse-listings"):
+      initializeBrowseListingsPage();
+      break;
     default:
       console.log("Unknown route:", currentPath);
   }
@@ -32,6 +35,11 @@ async function initializeLandingPage() {
   initLandingPage();
 }
 
+async function initializeBrowseListingsPage() {
+  console.log("Loading Browse Listings page...");
+  const { initBrowseListingsPage } = await import("../pages/listings.js");
+  initBrowseListingsPage();
+}
 async function initializeRegisterPage() {
   console.log("Loading register page...");
   const { initRegister } = await import("../pages/register.js");

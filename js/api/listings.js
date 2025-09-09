@@ -1,6 +1,26 @@
 import { API_CONFIG } from "../utils/constants.js";
 import { getAuthHeaders, isLoggedIn } from "../utils/authUtils.js";
 
+export async function fetchBrowseListings() {
+  const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?_active=true&_seller=true&_bids=true`
+  try {
+    const headers = isLoggedIn()
+    ? getAuthHeaders()
+    :{"Content-Type": "application/json"};
+    const response = await fetch(url, {headers});
+    if (!response.ok) {
+      throw new Error("Failed to fetch browse listings")
+    }
+    const data = await response.json();
+    console.log("browse listings:", data);
+    return data;
+  }
+catch(error) {
+  console.error("failed to fetch browse listings", error);
+  throw error;
+}
+}
+
 export async function fetchEndingSoonListings() {
   const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?limit=6&sort=endsAt&sortOrder=asc&_active=true&_seller=true&_bids=true`;
 
@@ -25,7 +45,7 @@ export async function fetchEndingSoonListings() {
 }
 
 export async function fetchNewestListings() {
-  const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?limit=6&sort=created&sortOrder=desc&_seller=true&_bids=true`;
+  const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?limit=6&sort=created&sortOrder=desc&_active=true&_seller=true&_bids=true`;
 
   try {
     const headers = isLoggedIn()
