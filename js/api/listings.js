@@ -2,7 +2,7 @@ import { API_CONFIG } from "../utils/constants.js";
 import { getAuthHeaders, isLoggedIn } from "../utils/authUtils.js";
 
 export async function fetchBrowseListings() {
-  const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}`
+  const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?_active=true&_seller=true&_bids=true`
   try {
     const headers = isLoggedIn()
     ? getAuthHeaders()
@@ -45,7 +45,7 @@ export async function fetchEndingSoonListings() {
 }
 
 export async function fetchNewestListings() {
-  const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?limit=6&sort=created&sortOrder=desc&_seller=true&_bids=true`;
+  const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?limit=6&sort=created&sortOrder=desc&_active=true&_seller=true&_bids=true`;
 
   try {
     const headers = isLoggedIn()

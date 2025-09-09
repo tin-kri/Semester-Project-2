@@ -49,8 +49,8 @@
     @apply bg-dropp-secondary p-4 text-white hover:bg-dropp-secondary/90 focus-visible:ring-dropp-secondary;
   }
 
-  .btn-light { 
-    @apply bg-dropp-gray-200  hover:bg-dropp-light focus-visible:ring-dropp-primary
+  .btn-light {
+    @apply bg-dropp-gray-200  hover:bg-dropp-light focus-visible:ring-dropp-primary;
   }
 
   /* Navigation link component for consistent hover states */
@@ -218,10 +218,16 @@
   }
 
   .breadcrumb-separator {
-    @apply mx-2;
+    @apply text-dropp-primary mx-2;
+  }
+  .time-overlay {
+    @apply absolute top-2 right-2 bg-dropp-gray-800/80 text-white text-xs font-medium px-2 py-1 rounded-md backdrop-blur-sm;
+  }
+
+  .time-overlay.urgent {
+    @apply bg-dropp-red-500/90;
   }
 }
-
 
 /* @import "tailwindcss";
 

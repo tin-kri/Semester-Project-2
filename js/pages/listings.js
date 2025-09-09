@@ -1,7 +1,8 @@
 
 import { fetchBrowseListings } from "../api/listings";
 import { showError, showLoading, showEmpty, setHTML } from "../utils/dom";
-import { createListingCard } from "../components/listingCard";
+import { createBrowseListingCard } from "../components/browseListingCard";
+
 export function initBrowseListingsPage() {
   console.log("loading browse listings page...");
   loadBrowseListings();
@@ -28,3 +29,16 @@ async function loadBrowseListings() {
 //   const cards = listings;
 //   setHTML("#listings-grid", cards);
 // }
+function renderBrowseListings(listings) {
+  if (listings.length === 0) {
+    showEmpty("#listings-grid", "No auctions found");
+    return;
+  }
+
+  // Create cards using the same function as landing page
+  const cards = listings
+    .map((listing) => createBrowseListingCard(listing, false)) // false = don't show time left
+    .join("");
+
+  setHTML("#listings-grid", cards);
+}
