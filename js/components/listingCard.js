@@ -1,5 +1,3 @@
-// js/components/listingCard.js
-
 export function createListingCard(listing, showTimeLeft = false) {
     const image = listing.media?.[0]?.url || '/placeholder.svg?height=192&width=256';
     const bidCount = listing._count?.bids || 0;
@@ -23,8 +21,10 @@ export function createListingCard(listing, showTimeLeft = false) {
             
             <div class="flex items-center justify-between mb-2">
                 <div>
+                <p class="text-dropp-gray-500 text-s">Current bid</p>
                     ${highestBid ? 
-                        `<p class="text-dropp-primary font-semibold">$${highestBid} current bid</p>` : 
+                    
+                        `<p class="text-dropp-primary font-semibold">${highestBid} credits</p>` : 
                         `<p class="text-dropp-gray-500">No bids yet</p>`
                     }
                     <p class="text-xs text-dropp-gray-500">${bidCount} bid${bidCount !== 1 ? 's' : ''}</p>
