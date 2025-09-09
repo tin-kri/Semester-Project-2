@@ -7,7 +7,7 @@ export function createBrowseListingCard(listing) {
     const isUrgent = isTimeUrgent(listing.endsAt); // Fixed: Actually call the function
   
     return `
-      <div class="bg-dropp-gray-50 rounded-lg p-6">
+      <div class="bg-white rounded-lg p-6">
         <div class="relative w-full h-48 bg-dropp-gray-200 rounded-lg mb-4 overflow-hidden">
           <img
             src="${image}"
