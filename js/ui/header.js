@@ -1,10 +1,9 @@
-// js/ui/header.js 
-
 import { isLoggedIn, getCurrentUser, logout } from '../utils/authUtils.js';
 
 export function initializeHeader() {
     initializeMobileMenu();
     showAuthSection();
+    
 }
 
 function initializeMobileMenu() {
@@ -150,13 +149,3 @@ function handleLogout() {
 }
 
 window.initializeHeader = initializeHeader
-// export function initializeHeader() {
-//     const mobileMenuButton = document.querySelector("button[data-mobile-menu]")
-//     const mobileMenu = document.getElementById("mobile-menu")
-
-//     if (mobileMenuButton && mobileMenu) {
-//         mobileMenuButton.addEventListener("click", () => {
-//           mobileMenu.classList.toggle("hidden")
-//         })
-//       }
-//   }
