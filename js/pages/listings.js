@@ -1,26 +1,32 @@
-import { fetchBrowseListings } from "../api/listings.js"
-import { createBrowseListingCard } from "../components/browseListingCard.js"
-import { initTagFilters, initSortFilters } from "../components/filterComponent.js"
-import { showError, showLoading, showEmpty, setHTML } from "../utils/dom.js"
+import { fetchBrowseListings } from "../api/listings.js";
+import { createBrowseListingCard } from "../components/browseListingCard.js";
+import {
+  initTagFilters,
+  initSortFilters,
+} from "../components/filterComponent.js";
+import { showError, showLoading, showEmpty, setHTML } from "../utils/dom.js";
+import { initSearchComponent } from "../components/searchComponent.js";
 
 // Global state for filtering and sorting
-let allListings = []
-let currentTag = null
-let currentSort = "ending-soon"
+let allListings = [];
+let currentTag = null;
+let currentSort = "ending-soon";
+let currentSearchQuery = "";
 
 /**
  * Initialize the browse listings page with filters and data loading
  */
 export async function initBrowseListingsPage() {
-  console.log("Loading browse listings page...")
-  
+  console.log("Loading browse listings page...");
+
   try {
-    await loadAllListings()
-    await initTagFilters(handleTagChange, handleClearFilters)
-    initSortFilters(handleSortChange)
+    await loadAllListings();
+    await initTagFilters(handleTagChange, handleClearFilters);
+    initSortFilters(handleSortChange);
+    initSearchComponent(handleSearchChange);
   } catch (error) {
-    console.error("Failed to load browse listings:", error)
-    showError("#listings-grid", "Failed to load listings")
+    console.error("Failed to load browse listings:", error);
+    showError("#listings-grid", "Failed to load listings");
   }
 }
 
@@ -29,19 +35,29 @@ export async function initBrowseListingsPage() {
  */
 async function loadAllListings() {
   try {
-    showLoading("#listings-grid", "Loading listings...")
-    const data = await fetchBrowseListings()
-    
+    showLoading("#listings-grid", "Loading listings...");
+    const data = await fetchBrowseListings();
+
     // Validate API response structure to prevent runtime errors
     if (!data || !Array.isArray(data.data)) {
-      throw new Error('Invalid API response format')
+      throw new Error("Invalid API response format");
     }
-    
-    allListings = data.data
-    renderFilteredListings()
+
+    allListings = data.data;
+    renderFilteredListings();
   } catch (error) {
-    console.error('Error loading listings:', error)
-    showError("#listings-grid", "Failed to load listings. Please try again.")
+    console.error("Error loading listings:", error);
+    showError("#listings-grid", "Failed to load listings. Please try again.");
+  }
+}
+
+function handleSearchChange(searchQuery) {
+  try {
+    currentSearchQuery = searchQuery;
+    renderFilteredListings();
+  } catch (error) {
+    console.error("Error handling search change:", error);
+    showError("#listings-grid", "Failed to search listings");
   }
 }
 
@@ -51,11 +67,11 @@ async function loadAllListings() {
  */
 function handleTagChange(tag) {
   try {
-    currentTag = tag
-    renderFilteredListings()
+    currentTag = tag;
+    renderFilteredListings();
   } catch (error) {
-    console.error('Error handling tag change:', error)
-    showError("#listings-grid", "Failed to filter by tag")
+    console.error("Error handling tag change:", error);
+    showError("#listings-grid", "Failed to filter by tag");
   }
 }
 
@@ -65,26 +81,107 @@ function handleTagChange(tag) {
  */
 function handleSortChange(sortBy) {
   try {
-    currentSort = sortBy
-    renderFilteredListings()
+    currentSort = sortBy;
+    renderFilteredListings();
   } catch (error) {
-    console.error('Error handling sort change:', error)
-    showError("#listings-grid", "Failed to sort listings")
+    console.error("Error handling sort change:", error);
+    showError("#listings-grid", "Failed to sort listings");
   }
 }
 
-/**
- * Reset all filters to default state
- */
 function handleClearFilters() {
   try {
-    currentTag = null
-    currentSort = "ending-soon"
-    renderFilteredListings()
+    currentTag = null;
+    currentSort = "ending-soon";
+    currentSearchQuery = "";
+
+    // Clears
+    const searchInput = document.querySelector('#search-filter');
+    if (searchInput) {
+      searchInput.value = '';
+    }
+
+    renderFilteredListings();
   } catch (error) {
-    console.error('Error clearing filters:', error)
-    showError("#listings-grid", "Failed to clear filters")
+    console.error('Error clearing filters:', error);
+    showError("#listings-grid", "Failed to clear filters");
   }
+}
+
+// Separate filter functions - each with single responsibility
+
+function applySearchFilter(listings, searchQuery) {
+  if (!searchQuery) return listings;
+  
+  const query = searchQuery.toLowerCase();
+  
+  return listings.filter(listing => {
+    if (!listing) return false;
+    
+    const searchableText = [
+      listing.title || '',
+      listing.description || '',
+      listing.tags ? listing.tags.join(' ') : ''
+    ].join(' ').toLowerCase();
+    
+    return searchableText.includes(query);
+  });
+}
+
+function applyTagFilter(listings, tag) {
+  if (!tag) return listings;
+  
+  return listings.filter(listing => {
+    if (!listing || !Array.isArray(listing.tags)) return false;
+    
+    return listing.tags.some(listingTag => 
+      typeof listingTag === 'string' && 
+      listingTag.toLowerCase() === tag.toLowerCase()
+    );
+  });
+}
+
+function applySorting(listings, sortType) {
+  const sortedListings = [...listings];
+  
+  switch (sortType) {
+    case 'newest':
+      return sortedListings.sort((a, b) => 
+        new Date(b.created || 0) - new Date(a.created || 0)
+      );
+      
+    case 'ending-soon':
+      return sortedListings.sort((a, b) => 
+        new Date(a.endsAt || 0) - new Date(b.endsAt || 0)
+      );
+      
+    case 'popularity':
+      return sortedListings.sort((a, b) => 
+        (b._count?.bids || 0) - (a._count?.bids || 0)
+      );
+      
+    case 'price-low':
+      return sortedListings.sort((a, b) => 
+        getHighestBid(a.bids) - getHighestBid(b.bids)
+      );
+      
+    case 'price-high':
+      return sortedListings.sort((a, b) => 
+        getHighestBid(b.bids) - getHighestBid(a.bids)
+      );
+      
+    default:
+      return sortedListings;
+  }
+}
+
+function validateListingsData(listings) {
+  if (!Array.isArray(listings)) {
+    console.warn('allListings is not an array:', listings);
+    showError('#listings-grid', 'No listings data available');
+    return false;
+  }
+  return true;
 }
 
 /**
@@ -93,70 +190,22 @@ function handleClearFilters() {
  */
 function renderFilteredListings() {
   try {
-    // Defensive check - ensure we have valid data to work with
-    if (!Array.isArray(allListings)) {
-      console.warn('allListings is not an array:', allListings)
-      showError("#listings-grid", "No listings data available")
-      return
-    }
-
-    let filteredListings = [...allListings]
+    // Early return for invalid data
+    if (!validateListingsData(allListings)) return;
     
-    // Apply tag filter - exact match on lowercase tag names
-    if (currentTag) {
-      filteredListings = filteredListings.filter(listing => {
-        if (!listing || !Array.isArray(listing.tags)) return false
-        return listing.tags.some(tag => 
-          typeof tag === 'string' && tag.toLowerCase() === currentTag.toLowerCase()
-        )
-      })
-    }
+    // Apply filters in sequence using function composition
+    let filteredListings = allListings;
+    filteredListings = applySearchFilter(filteredListings, currentSearchQuery);
+    filteredListings = applyTagFilter(filteredListings, currentTag);
+    filteredListings = applySorting(filteredListings, currentSort);
     
-    // Apply sorting based on user selection
-    switch (currentSort) {
-      case "newest":
-        // Sort by creation date: newest listings first
-        filteredListings.sort((a, b) => 
-          new Date(b.created || 0) - new Date(a.created || 0)
-        )
-        break
-        
-      case "ending-soon":
-        // Sort by end date: auctions ending soonest first
-        filteredListings.sort((a, b) => 
-          new Date(a.endsAt || 0) - new Date(b.endsAt || 0)
-        )
-        break
-        
-      case "popularity":
-        // Sort by bid count: most popular auctions first
-        filteredListings.sort((a, b) => 
-          (b._count?.bids || 0) - (a._count?.bids || 0)
-        )
-        break
-        
-      case "price-low":
-        // Sort by price: lowest current bid first
-        filteredListings.sort((a, b) => 
-          getHighestBid(a.bids) - getHighestBid(b.bids)
-        )
-        break
-        
-      case "price-high":
-        // Sort by price: highest current bid first
-        filteredListings.sort((a, b) => 
-          getHighestBid(b.bids) - getHighestBid(a.bids)
-        )
-        break
-    }
-    
-    // Single render call with results count update
-    renderListings(filteredListings)
-    updateResultsCount(filteredListings.length, currentTag)
+    // Render results
+    renderListings(filteredListings);
+    updateResultsCount(filteredListings.length, currentSearchQuery, currentTag);
     
   } catch (error) {
-    console.error('Error filtering and rendering listings:', error)
-    showError("#listings-grid", "Failed to display listings")
+    console.error('Error filtering and rendering listings:', error);
+    showError('#listings-grid', 'Failed to display listings');
   }
 }
 
@@ -166,23 +215,35 @@ function renderFilteredListings() {
  */
 function renderListings(listings) {
   if (listings.length === 0) {
-    showEmpty("#listings-grid", "No auctions found")
-    return
+    showEmpty("#listings-grid", "No auctions found");
+    return;
   }
-  
-  const cards = listings.map(listing => createBrowseListingCard(listing)).join("")
-  setHTML("#listings-grid", cards)
+
+  const cards = listings
+    .map((listing) => createBrowseListingCard(listing))
+    .join("");
+  setHTML("#listings-grid", cards);
 }
 
 /**
  * Update the results count display with current filter context
  * @param {number} count - Number of results being displayed
+ * @param {string} searchQuery - Current search query
  * @param {string|null} tag - Current tag filter, if any
  */
-function updateResultsCount(count, tag = null) {
-  const text = tag ? `Showing ${count} results for "${tag}"` : `Showing ${count} results`
-  const element = document.getElementById("results-count")
-  if (element) element.textContent = text
+function updateResultsCount(count, searchQuery = '', tag = null) {
+  let text = `Showing ${count} results`;
+  
+  if (searchQuery && tag) {
+    text = `Found ${count} results for "${searchQuery}" in "${tag}"`;
+  } else if (searchQuery) {
+    text = `Found ${count} results for "${searchQuery}"`;
+  } else if (tag) {
+    text = `Showing ${count} results for "${tag}"`;
+  }
+  
+  const element = document.getElementById('results-count');
+  if (element) element.textContent = text;
 }
 
 /**
@@ -191,6 +252,10 @@ function updateResultsCount(count, tag = null) {
  * @returns {number} Highest bid amount, or 0 if no bids
  */
 function getHighestBid(bids) {
-  if (!bids || bids.length === 0) return 0
-  return Math.max(...bids.map(bid => bid.amount))
+  if (!bids || bids.length === 0) return 0;
+  return Math.max(...bids.map((bid) => bid.amount));
 }
+
+window.viewListing = function (listingId) {
+  window.location.href = `/listing-details/index.html?id=${listingId}`;
+};
