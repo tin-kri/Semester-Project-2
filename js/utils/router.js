@@ -1,3 +1,5 @@
+import { requireAuth } from "../utils/authUtils.js";
+
 export function initializeApp() {
   const currentPath = window.location.pathname;
   console.log("Current path:", currentPath);
@@ -54,12 +56,18 @@ async function initializeLoginPage() {
 
 async function initializeProfilePage() {
   console.log("Loading profile page...");
+  if (!requireAuth()) {
+    return;
+  }
   const { initProfile } = await import("../pages/profile.js");
   initProfile();
 }
 
 async function initializeCreateListingPage() {
   console.log("Loading Create New Listing page...");
+  if (!requireAuth()) {
+    return;
+  }
   const { initCreateNewListing } = await import("../pages/createListing.js");
   initCreateNewListing();
 }
