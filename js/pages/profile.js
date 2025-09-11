@@ -2,6 +2,7 @@ import { initBioEditor } from "../components/bioEditor.js";
 import { initAvatarEditor } from "../components/avatarEditor.js";
 import { getMyProfile, updateMyProfile } from "../api/profiles.js";
 import { updateCurrentUser } from "../utils/authUtils.js";
+import { showSuccess, showError } from "../utils/messages.js";
 
 let bioEditorInitialized = false;
 let avatarEditorInitialized = false;
@@ -18,7 +19,7 @@ export async function initProfile() {
     initializeAvatarEditor(data.avatar);
   } catch (error) {
     console.error("Failed to load profile:", error);
-    showErrorMessage("Failed to load profile data");
+    showError("Failed to load profile data");
   }
 }
 
@@ -91,32 +92,47 @@ function initializeAvatarEditor(currentAvatar) {
 
   avatarEditorInitialized = true;
 }
-
 async function handleBioUpdate(newBio) {
   try {
     await updateMyProfile({ bio: newBio });
     console.log("Bio updated successfully");
+
+    // Only show success message when it succeeds
+    showSuccess("Bio updated successfully!", {
+      duration: 3000,
+      container: "#bio-avatar-messages",
+    });
     return Promise.resolve();
   } catch (error) {
     console.error("Failed to update bio:", error);
-    showErrorMessage("Failed to update bio");
+
+    // Only show error message when it fails
+    showError("Failed to update bio", {
+      duration: 3000,
+      container: "#bio-avatar-messages",
+    });
+
     return Promise.reject(error);
   }
 }
-
 async function handleAvatarUpdate(avatarData) {
   try {
     await updateMyProfile({ avatar: avatarData });
     console.log("Avatar updated successfully");
-
+    
     updateCurrentUser({ avatar: avatarData });
-
+    
     if (window.initializeHeader) {
       window.initializeHeader();
     }
-
-    showErrorMessage("Avatar updated successfully!");
-
+    
+    // Show success message with dedicated avatar container
+    showSuccess("Avatar updated successfully!", {
+      duration: 3000,
+      container: "#bio-avatar-messages",  // Use separate container for avatar
+    });
+    
+    // Update the avatar image in the UI
     const avatarContainer = document.querySelector("#profile-user-img");
     const img = document.createElement("img");
     img.src = avatarData.url;
@@ -124,11 +140,17 @@ async function handleAvatarUpdate(avatarData) {
     img.className = "w-24 h-24 rounded-full object-cover";
     avatarContainer.innerHTML = "";
     avatarContainer.appendChild(img);
-
+    
     return Promise.resolve();
   } catch (error) {
     console.error("Failed to update avatar:", error);
-    showErrorMessage("Failed to update avatar");
+    
+    // Show error message with same container
+    showError("Failed to update avatar", {
+      duration: 3000,
+      container: "#bio-avatar-messages",
+    });
+    
     return Promise.reject(error);
   }
 }
@@ -161,17 +183,17 @@ function showAllEditButtons() {
   }
 }
 
-function showErrorMessage(message) {
-  console.error(message);
+// function showErrorMessage(message) {
+//   console.error(message);
 
-  const errorDiv = document.createElement("div");
-  errorDiv.className =
-    "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4";
-  errorDiv.textContent = message;
+//   const errorDiv = document.createElement("div");
+//   errorDiv.className =
+//     "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4";
+//   errorDiv.textContent = message;
 
-  const main = document.querySelector("main");
-  if (main) {
-    main.insertBefore(errorDiv, main.firstChild);
-    setTimeout(() => errorDiv.remove(), 5000);
-  }
-}
+//   const main = document.querySelector("main");
+//   if (main) {
+//     main.insertBefore(errorDiv, main.firstChild);
+//     setTimeout(() => errorDiv.remove(), 5000);
+//   }
+// }

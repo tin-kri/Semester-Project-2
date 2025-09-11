@@ -76,7 +76,7 @@ function createUserSection(user, type) {
 }
 
 function createGuestSection(type) {
-    const loginLink = createLink('/auth/login/', 'Login', type);
+    const loginLink = createLink('/auth/login/', 'Sign In', type);
     const signupLink = createLink('/auth/register/', 'Sign Up', type, true);
     
     if (type === 'desktop') {
