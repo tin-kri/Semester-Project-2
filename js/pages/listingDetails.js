@@ -66,7 +66,7 @@ function updateTimeRemaining(endsAt) {
 
   timeEl.textContent = formatTimeRemaining(endsAt);
   timeEl.className = `text-2xl font-bold font-archivo ${
-    isAuctionEnded(endsAt) ? "text-red-600" : "text-green-600"
+    isAuctionEnded(endsAt) ? "text-red-600" : "text-dropp-secondary"
   }`;
 }
 

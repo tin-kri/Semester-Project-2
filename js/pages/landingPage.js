@@ -59,7 +59,6 @@ function renderNewest(listings) {
   setHTML("#newest-listings", cards);
 }
 
-
 window.viewListing = function (listingId) {
   window.location.href = `/listing-details/index.html?id=${listingId}`;
 };
