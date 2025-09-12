@@ -4,39 +4,39 @@ export function initAvatarEditor(
   currentAvatar,
   onAvatarUpdated,
   hideOtherEditor,
-  showOtherEditor
+  showOtherEditor,
 ) {
-  editButton.addEventListener("click", enterEditMode);
+  editButton.addEventListener('click', enterEditMode);
 
   function enterEditMode() {
-    const urlInput = document.createElement("input");
-    urlInput.type = "url";
-    urlInput.value = currentAvatar?.url || "";
-    urlInput.className = "w-full m-5 p-2 border rounded";
-    urlInput.placeholder = "https://example.com/image.jpg";
+    const urlInput = document.createElement('input');
+    urlInput.type = 'url';
+    urlInput.value = currentAvatar?.url || '';
+    urlInput.className = 'w-full m-5 p-2 border rounded';
+    urlInput.placeholder = 'https://example.com/image.jpg';
 
-    const altInput = document.createElement("input");
-    altInput.value = currentAvatar?.alt || "";
-    altInput.className = "w-full m-5 p-2 border rounded";
-    altInput.placeholder = "Image description (optional)";
+    const altInput = document.createElement('input');
+    altInput.value = currentAvatar?.alt || '';
+    altInput.className = 'w-full m-5 p-2 border rounded';
+    altInput.placeholder = 'Image description (optional)';
     altInput.maxLength = 120;
 
-    const saveBtn = document.createElement("button");
-    saveBtn.textContent = "Save";
-    saveBtn.className = "btn btn-primary mr-3 px-6 py-2";
+    const saveBtn = document.createElement('button');
+    saveBtn.textContent = 'Save';
+    saveBtn.className = 'btn btn-primary mr-3 px-6 py-2';
 
-    const cancelBtn = document.createElement("button");
-    cancelBtn.textContent = "Cancel";
-    cancelBtn.className = "btn .btn-light px-6 py-2";
+    const cancelBtn = document.createElement('button');
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.className = 'btn .btn-light px-6 py-2';
 
-    formElement.innerHTML = "";
+    formElement.innerHTML = '';
     formElement.appendChild(urlInput);
     formElement.appendChild(altInput);
     formElement.appendChild(saveBtn);
     formElement.appendChild(cancelBtn);
 
-    formElement.classList.remove("hidden");
-    editButton.style.display = "none";
+    formElement.classList.remove('hidden');
+    editButton.style.display = 'none';
     hideOtherEditor();
     saveBtn.onclick = () => saveAvatar(urlInput.value, altInput.value);
     cancelBtn.onclick = exitEditMode;
@@ -45,8 +45,8 @@ export function initAvatarEditor(
   }
 
   function exitEditMode() {
-    formElement.innerHTML = "";
-    editButton.style.display = "block";
+    formElement.innerHTML = '';
+    editButton.style.display = 'block';
     // editButton.classList.remove("hidden");
     showOtherEditor();
   }
@@ -55,12 +55,12 @@ export function initAvatarEditor(
     const trimmedAlt = alt.trim();
 
     if (!trimmedUrl) {
-      console.error("Validation failed: Image URL is required");
+      console.error('Validation failed: Image URL is required');
       return;
     }
 
     if (trimmedAlt.length > 120) {
-      console.error("Validation failed: Alt text exceeds 120 characters");
+      console.error('Validation failed: Alt text exceeds 120 characters');
       return;
     }
 
@@ -69,6 +69,6 @@ export function initAvatarEditor(
         currentAvatar = { url: trimmedUrl, alt: trimmedAlt };
         exitEditMode();
       })
-      .catch((error) => console.error("Save failed:", error));
+      .catch((error) => console.error('Save failed:', error));
   }
 }

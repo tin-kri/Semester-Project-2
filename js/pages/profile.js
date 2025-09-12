@@ -1,14 +1,14 @@
-import { initBioEditor } from "../components/bioEditor.js";
-import { initAvatarEditor } from "../components/avatarEditor.js";
-import { getMyProfile, updateMyProfile } from "../api/profiles.js";
-import { updateCurrentUser } from "../utils/authUtils.js";
-import { showSuccess, showError } from "../utils/messages.js";
+import { initBioEditor } from '../components/bioEditor.js';
+import { initAvatarEditor } from '../components/avatarEditor.js';
+import { getMyProfile, updateMyProfile } from '../api/profiles.js';
+import { updateCurrentUser } from '../utils/authUtils.js';
+import { showSuccess, showError } from '../utils/messages.js';
 
 let bioEditorInitialized = false;
 let avatarEditorInitialized = false;
 
 export async function initProfile() {
-  console.log("Profile page initialized successfully");
+  console.log('Profile page initialized successfully');
 
   try {
     const profileData = await getMyProfile();
@@ -18,44 +18,44 @@ export async function initProfile() {
     initializeBioEditor(data.bio);
     initializeAvatarEditor(data.avatar);
   } catch (error) {
-    console.error("Failed to load profile:", error);
-    showError("Failed to load profile data");
+    console.error('Failed to load profile:', error);
+    showError('Failed to load profile data');
   }
 }
 
 function renderProfileData(data) {
   updateAvatarImage(data.avatar);
 
-  document.querySelector("#profile-user-name").textContent = data.name;
-  document.querySelector("#profile-user-bio").textContent =
-    data.bio || "No bio available";
-  document.querySelector("#profile-credits").textContent = data.credits;
-  document.querySelector("#profile-listings-count").textContent =
+  document.querySelector('#profile-user-name').textContent = data.name;
+  document.querySelector('#profile-user-bio').textContent =
+    data.bio || 'No bio available';
+  document.querySelector('#profile-credits').textContent = data.credits;
+  document.querySelector('#profile-listings-count').textContent =
     data._count.listings;
-  document.querySelector("#profile-bids-won-count").textContent =
+  document.querySelector('#profile-bids-won-count').textContent =
     data._count.bids_won || data._count.wins || 0;
 }
 
 function updateAvatarImage(avatarData) {
-  if (!avatarData?.url) return;
+  if (!avatarData?.url) {return;}
 
-  const avatarContainer = document.querySelector("#profile-user-img");
-  const img = document.createElement("img");
+  const avatarContainer = document.querySelector('#profile-user-img');
+  const img = document.createElement('img');
   img.src = avatarData.url;
-  img.alt = avatarData.alt || "Profile avatar";
-  img.className = "w-24 h-24 rounded-full object-cover";
+  img.alt = avatarData.alt || 'Profile avatar';
+  img.className = 'w-24 h-24 rounded-full object-cover';
 
-  avatarContainer.innerHTML = "";
+  avatarContainer.innerHTML = '';
   avatarContainer.appendChild(img);
 }
 
 function showProfileMessage(message, type) {
   const options = {
     duration: 3000,
-    elementId: "bio-avatar-messages",
+    elementId: 'bio-avatar-messages',
   };
 
-  if (type === "success") {
+  if (type === 'success') {
     showSuccess(message, options);
   } else {
     showError(message, options);
@@ -63,13 +63,13 @@ function showProfileMessage(message, type) {
 }
 
 function initializeBioEditor(currentBio) {
-  if (bioEditorInitialized) return;
+  if (bioEditorInitialized) {return;}
 
-  const bioElement = document.querySelector("#profile-user-bio");
-  const editButton = document.querySelector("#edit-bio");
+  const bioElement = document.querySelector('#profile-user-bio');
+  const editButton = document.querySelector('#edit-bio');
 
   if (!bioElement || !editButton) {
-    console.error("Bio editor elements not found");
+    console.error('Bio editor elements not found');
     return;
   }
 
@@ -78,21 +78,21 @@ function initializeBioEditor(currentBio) {
     editButton,
     currentBio,
     handleBioUpdate,
-    () => hideOtherEditButtons("bio"),
-    () => showAllEditButtons()
+    () => hideOtherEditButtons('bio'),
+    () => showAllEditButtons(),
   );
 
   bioEditorInitialized = true;
 }
 
 function initializeAvatarEditor(currentAvatar) {
-  if (avatarEditorInitialized) return;
+  if (avatarEditorInitialized) {return;}
 
-  const formElement = document.querySelector("#avatar-edit-form");
-  const editButton = document.querySelector("#change-avatar");
+  const formElement = document.querySelector('#avatar-edit-form');
+  const editButton = document.querySelector('#change-avatar');
 
   if (!formElement || !editButton) {
-    console.error("Avatar editor elements not found");
+    console.error('Avatar editor elements not found');
     return;
   }
 
@@ -101,8 +101,8 @@ function initializeAvatarEditor(currentAvatar) {
     editButton,
     currentAvatar,
     handleAvatarUpdate,
-    () => hideOtherEditButtons("avatar"),
-    () => showAllEditButtons()
+    () => hideOtherEditButtons('avatar'),
+    () => showAllEditButtons(),
   );
 
   avatarEditorInitialized = true;
@@ -111,12 +111,12 @@ function initializeAvatarEditor(currentAvatar) {
 async function handleBioUpdate(newBio) {
   try {
     await updateMyProfile({ bio: newBio });
-    console.log("Bio updated successfully");
-    showProfileMessage("Bio updated successfully!", "success");
+    console.log('Bio updated successfully');
+    showProfileMessage('Bio updated successfully!', 'success');
     return Promise.resolve();
   } catch (error) {
-    console.error("Failed to update bio:", error);
-    showProfileMessage("Failed to update bio", "error");
+    console.error('Failed to update bio:', error);
+    showProfileMessage('Failed to update bio', 'error');
     return Promise.reject(error);
   }
 }
@@ -124,7 +124,7 @@ async function handleBioUpdate(newBio) {
 async function handleAvatarUpdate(avatarData) {
   try {
     await updateMyProfile({ avatar: avatarData });
-    console.log("Avatar updated successfully");
+    console.log('Avatar updated successfully');
 
     updateCurrentUser({ avatar: avatarData });
 
@@ -132,14 +132,14 @@ async function handleAvatarUpdate(avatarData) {
       window.initializeHeader();
     }
 
-    showProfileMessage("Avatar updated successfully!", "success");
+    showProfileMessage('Avatar updated successfully!', 'success');
 
     updateAvatarImage(avatarData);
 
     return Promise.resolve();
   } catch (error) {
-    console.error("Failed to update avatar:", error);
-    showProfileMessage("Failed to update avatar", "error");
+    console.error('Failed to update avatar:', error);
+    showProfileMessage('Failed to update avatar', 'error');
     return Promise.reject(error);
   }
 }
@@ -147,27 +147,27 @@ async function handleAvatarUpdate(avatarData) {
 function hideOtherEditButtons(activeEditor) {
   console.log(`Hiding other editors, ${activeEditor} is now active`);
 
-  const bioEditBtn = document.querySelector("#edit-bio");
-  const avatarEditBtn = document.querySelector("#change-avatar");
+  const bioEditBtn = document.querySelector('#edit-bio');
+  const avatarEditBtn = document.querySelector('#change-avatar');
 
-  if (activeEditor === "bio" && avatarEditBtn) {
-    avatarEditBtn.style.display = "none";
-  } else if (activeEditor === "avatar" && bioEditBtn) {
-    bioEditBtn.style.display = "none";
+  if (activeEditor === 'bio' && avatarEditBtn) {
+    avatarEditBtn.style.display = 'none';
+  } else if (activeEditor === 'avatar' && bioEditBtn) {
+    bioEditBtn.style.display = 'none';
   }
 }
 
 function showAllEditButtons() {
-  console.log("Showing all edit buttons");
+  console.log('Showing all edit buttons');
 
-  const bioEditBtn = document.querySelector("#edit-bio");
-  const avatarEditBtn = document.querySelector("#change-avatar");
+  const bioEditBtn = document.querySelector('#edit-bio');
+  const avatarEditBtn = document.querySelector('#change-avatar');
 
   if (bioEditBtn) {
-    bioEditBtn.style.display = "block";
+    bioEditBtn.style.display = 'block';
   }
   if (avatarEditBtn) {
-    avatarEditBtn.style.display = "block";
+    avatarEditBtn.style.display = 'block';
   }
 }
 // import { initBioEditor } from "../components/bioEditor.js";

@@ -1,14 +1,14 @@
-import { isLoggedIn, getCurrentUser } from "../utils/authUtils.js";
+import { isLoggedIn, getCurrentUser } from '../utils/authUtils.js';
 
 export function initBidForm(
   bidButton,
   bidInput,
   listing,
   onBidSuccess,
-  onBidError
+  onBidError,
 ) {
   if (!bidButton || !bidInput) {
-    console.error("Bid form elements not found");
+    console.error('Bid form elements not found');
     return;
   }
 
@@ -32,30 +32,30 @@ export function initBidForm(
   }
 
   function setLoginState() {
-    bidButton.textContent = "Log In to Bid";
-    bidButton.onclick = () => (window.location.href = "/auth/login/");
+    bidButton.textContent = 'Log In to Bid';
+    bidButton.onclick = () => (window.location.href = '/auth/login/');
     bidButton.disabled = false;
-    bidButton.className = "btn btn-secondary w-full py-4 text-lg font-semibold";
+    bidButton.className = 'btn btn-secondary w-full py-4 text-lg font-semibold';
     bidInput.disabled = true;
-    bidInput.placeholder = "Please log in to bid";
+    bidInput.placeholder = 'Please log in to bid';
   }
 
   function setEndedState() {
-    bidButton.textContent = "Auction Ended";
+    bidButton.textContent = 'Auction Ended';
     bidButton.disabled = true;
     bidButton.className =
-      "btn w-full py-4 text-lg font-semibold bg-gray-400 text-white cursor-not-allowed";
+      'btn w-full py-4 text-lg font-semibold bg-gray-400 text-white cursor-not-allowed';
     bidInput.disabled = true;
-    bidInput.placeholder = "Auction has ended";
+    bidInput.placeholder = 'Auction has ended';
   }
 
   function setSellerState() {
-    bidButton.textContent = "Your Listing";
+    bidButton.textContent = 'Your Listing';
     bidButton.disabled = true;
     bidButton.className =
-      "btn w-full py-4 text-lg font-semibold bg-gray-400 text-white cursor-not-allowed";
+      'btn w-full py-4 text-lg font-semibold bg-gray-400 text-white cursor-not-allowed';
     bidInput.disabled = true;
-    bidInput.placeholder = "You cannot bid on your own item";
+    bidInput.placeholder = 'You cannot bid on your own item';
   }
 
   function setActiveState() {
@@ -66,13 +66,13 @@ export function initBidForm(
     bidInput.placeholder = `Minimum bid: ${minBid} credits`;
     bidInput.disabled = false;
 
-    bidButton.textContent = "Place Bid";
+    bidButton.textContent = 'Place Bid';
     bidButton.disabled = false;
-    bidButton.className = "btn btn-primary w-full py-4 text-lg font-semibold";
+    bidButton.className = 'btn btn-primary w-full py-4 text-lg font-semibold';
 
     bidButton.onclick = handleBidSubmission;
     bidInput.onkeypress = (e) => {
-      if (e.key === "Enter") handleBidSubmission();
+      if (e.key === 'Enter') {handleBidSubmission();}
     };
   }
 
@@ -89,10 +89,10 @@ export function initBidForm(
 
     try {
       await onBidSuccess(listing.id, bidAmount);
-      bidInput.value = "";
+      bidInput.value = '';
     } catch (error) {
-      console.error("Bid submission failed:", error);
-      onBidError(error.message || "Failed to place bid");
+      console.error('Bid submission failed:', error);
+      onBidError(error.message || 'Failed to place bid');
     } finally {
       setActiveState();
     }
@@ -100,9 +100,9 @@ export function initBidForm(
 
   function setBiddingState() {
     bidButton.disabled = true;
-    bidButton.textContent = "Placing Bid...";
+    bidButton.textContent = 'Placing Bid...';
     bidButton.className =
-      "btn btn-primary w-full py-4 text-lg font-semibold opacity-50 cursor-not-allowed";
+      'btn btn-primary w-full py-4 text-lg font-semibold opacity-50 cursor-not-allowed';
     bidInput.disabled = true;
   }
 
@@ -121,7 +121,7 @@ export function initBidForm(
   }
 
   function getCurrentBid(bids) {
-    if (!bids || bids.length === 0) return 0;
+    if (!bids || bids.length === 0) {return 0;}
     return Math.max(...bids.map((bid) => bid.amount));
   }
 }

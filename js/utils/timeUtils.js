@@ -18,17 +18,17 @@ export function formatTimeRemaining(endsAt) {
   const timeLeft = calculateTimeLeft(endsAt);
 
   if (timeLeft.isEnded) {
-    return "Auction Ended";
+    return 'Auction Ended';
   }
 
   if (timeLeft.days > 0) {
-    return `${timeLeft.days} Day${timeLeft.days !== 1 ? "s" : ""} ${
+    return `${timeLeft.days} Day${timeLeft.days !== 1 ? 's' : ''} ${
       timeLeft.hours
-    } Hour${timeLeft.hours !== 1 ? "s" : ""}`;
+    } Hour${timeLeft.hours !== 1 ? 's' : ''}`;
   } else if (timeLeft.hours > 0) {
-    return `${timeLeft.hours} Hour${timeLeft.hours !== 1 ? "s" : ""}`;
+    return `${timeLeft.hours} Hour${timeLeft.hours !== 1 ? 's' : ''}`;
   } else {
-    return `${timeLeft.minutes} Minute${timeLeft.minutes !== 1 ? "s" : ""}`;
+    return `${timeLeft.minutes} Minute${timeLeft.minutes !== 1 ? 's' : ''}`;
   }
 }
 
@@ -42,6 +42,6 @@ export function getAuctionStatus(endsAt) {
   return {
     isEnded: timeLeft.isEnded,
     timeRemaining: formatTimeRemaining(endsAt),
-    cssClass: timeLeft.isEnded ? "text-red-600" : "text-green-600",
+    cssClass: timeLeft.isEnded ? 'text-red-600' : 'text-green-600',
   };
 }
