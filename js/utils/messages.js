@@ -1,4 +1,3 @@
-
 export function showMessage(message, type = 'error', options = {}) {
   const {
     elementId = null,
@@ -6,7 +5,6 @@ export function showMessage(message, type = 'error', options = {}) {
     duration = 5000,
     position = 'top',
   } = options;
-
 
   if (elementId) {
     const element = document.getElementById(elementId);
@@ -48,4 +46,3 @@ export function hideMessage(elementId) {
     element.textContent = '';
   }
 }
-

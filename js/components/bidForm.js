@@ -71,8 +71,10 @@ export function initBidForm(
     bidButton.className = 'btn btn-primary w-full py-4 text-lg font-semibold';
 
     bidButton.onclick = handleBidSubmission;
-    bidInput.onkeypress = (e) => {
-      if (e.key === 'Enter') {handleBidSubmission();}
+    bidInput.onkeypress = e => {
+      if (e.key === 'Enter') {
+        handleBidSubmission();
+      }
     };
   }
 
@@ -121,7 +123,9 @@ export function initBidForm(
   }
 
   function getCurrentBid(bids) {
-    if (!bids || bids.length === 0) {return 0;}
-    return Math.max(...bids.map((bid) => bid.amount));
+    if (!bids || bids.length === 0) {
+      return 0;
+    }
+    return Math.max(...bids.map(bid => bid.amount));
   }
 }

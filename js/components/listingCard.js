@@ -29,8 +29,8 @@ export function createListingCard(listing, showTimeLeft = false) {
                         : '<p class="text-dropp-gray-500">No bids yet</p>'
                     }
                     <p class="text-xs text-dropp-gray-500">${bidCount} bid${
-    bidCount !== 1 ? 's' : ''
-  }</p>
+                      bidCount !== 1 ? 's' : ''
+                    }</p>
                 </div>
                 ${
                   timeLeft
@@ -54,8 +54,10 @@ export function createListingCard(listing, showTimeLeft = false) {
 }
 
 function getHighestBid(bids) {
-  if (!bids || bids.length === 0) {return null;}
-  return Math.max(...bids.map((bid) => bid.amount));
+  if (!bids || bids.length === 0) {
+    return null;
+  }
+  return Math.max(...bids.map(bid => bid.amount));
 }
 
 function getTimeLeft(endsAt) {
@@ -63,7 +65,9 @@ function getTimeLeft(endsAt) {
   const endTime = new Date(endsAt);
   const timeDiff = endTime - now;
 
-  if (timeDiff <= 0) {return 'Ended';}
+  if (timeDiff <= 0) {
+    return 'Ended';
+  }
 
   const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
   const hours = Math.floor(

@@ -6,15 +6,14 @@
  * @returns {boolean} - Returns `true` if the operation was successful, otherwise `false`.
  */
 export function addToLocalStorage(key, value) {
-    try {
-        localStorage.setItem(key, value);
-        return true;
-    } catch (error) {
-        console.error(`Failed to store ${key}:`, error);
-        return false;
-    }
+  try {
+    localStorage.setItem(key, value);
+    return true;
+  } catch (error) {
+    console.error(`Failed to store ${key}:`, error);
+    return false;
+  }
 }
-
 
 /**
  * Retrieves a value from local storage.
@@ -23,31 +22,31 @@ export function addToLocalStorage(key, value) {
  * @returns {string|null} - Returns the stored value if found, otherwise `null`.
  */
 export function getFromLocalStorage(key) {
-    try {
-        const value = localStorage.getItem(key);
-        return value;
-    } catch (error) {
-        console.error(`Failed to retrieve ${key}:`, error);
-        return null;
-    }
+  try {
+    const value = localStorage.getItem(key);
+    return value;
+  } catch (error) {
+    console.error(`Failed to retrieve ${key}:`, error);
+    return null;
+  }
 }
 
 export function removeFromLocalStorage(key) {
-    try {
-        localStorage.removeItem(key);
-        return true;
-    } catch (error) {
-        console.error(`Failed to remove ${key}:`, error);
-        return false;
-    }
+  try {
+    localStorage.removeItem(key);
+    return true;
+  } catch (error) {
+    console.error(`Failed to remove ${key}:`, error);
+    return false;
+  }
 }
 
 export function clearLocalStorage() {
-    try {
-        localStorage.clear();
-        return true;
-    } catch (error) {
-        console.error('Failed to clear localStorage:', error);
-        return false;
-    }
+  try {
+    localStorage.clear();
+    return true;
+  } catch (error) {
+    console.error('Failed to clear localStorage:', error);
+    return false;
+  }
 }

@@ -24,10 +24,10 @@ export async function initTagFilters(tagChangeCallback, clearCallback) {
 export function initSortFilters(sortChangeCallback) {
   const sortSelects = document.querySelectorAll('#desktop-sort, #mobile-sort');
 
-  sortSelects.forEach((select) => {
-    select.addEventListener('change', (e) => {
+  sortSelects.forEach(select => {
+    select.addEventListener('change', e => {
       sortChangeCallback(e.target.value);
-      sortSelects.forEach((s) => (s.value = e.target.value));
+      sortSelects.forEach(s => (s.value = e.target.value));
     });
   });
 }
@@ -41,7 +41,7 @@ function renderTags(tags) {
 
   const tagButtons = tags
     .map(
-      (tag) =>
+      tag =>
         `<button class="tag clickable w-full text-left" data-tag="${tag.filterValue}">
        <div class="flex justify-between items-center">
          <span>${tag.name}</span>
@@ -56,9 +56,11 @@ function renderTags(tags) {
 }
 
 function setupTagEvents() {
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', e => {
     const tagButton = e.target.closest('[data-tag]');
-    if (!tagButton) {return;}
+    if (!tagButton) {
+      return;
+    }
 
     const tag = tagButton.dataset.tag;
 
@@ -78,7 +80,7 @@ function setupClearEvents() {
   const clearButtons = document.querySelectorAll(
     '#clear-filters, #mobile-clear-filters',
   );
-  clearButtons.forEach((button) => {
+  clearButtons.forEach(button => {
     button.addEventListener('click', () => {
       currentTag = null;
       updateTagButtons();
@@ -89,7 +91,7 @@ function setupClearEvents() {
 }
 
 function updateTagButtons() {
-  document.querySelectorAll('[data-tag]').forEach((button) => {
+  document.querySelectorAll('[data-tag]').forEach(button => {
     const tag = button.dataset.tag;
     if (currentTag === tag) {
       button.classList.add('bg-dropp-primary', 'text-white');
@@ -102,7 +104,7 @@ function updateTagButtons() {
 }
 
 function resetSortDropdowns() {
-  document.querySelectorAll('#desktop-sort, #mobile-sort').forEach((select) => {
+  document.querySelectorAll('#desktop-sort, #mobile-sort').forEach(select => {
     select.value = 'ending-soon';
   });
 }

@@ -1,5 +1,5 @@
 import { createListing } from '../api/createListing.js';
-import { showSuccess, showError} from '../utils/messages.js';
+import { showSuccess, showError } from '../utils/messages.js';
 
 export async function initCreateNewListing() {
   const createNewListingForm = document.querySelector('#create-listing-form');

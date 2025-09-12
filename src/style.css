@@ -1,8 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --font-archivo: "Archivo", sans-serif;
-  --font-ibm: "IBM Plex Sans", sans-serif;
+  --font-archivo: 'Archivo', sans-serif;
+  --font-ibm: 'IBM Plex Sans', sans-serif;
 
   --color-dropp-primary: #1a9cb0;
   --color-dropp-secondary: #6366f1;
@@ -147,94 +147,91 @@
   .form-success {
     @apply text-dropp-gray-50 bg-dropp-secondary border border-dropp-primary/20 text-sm text-center w-full mb-6 rounded-md p-3;
   }
-  
+
   .form-error {
     @apply text-dropp-gray-50 bg-dropp-red-500 border border-dropp-red-500/20 text-sm text-center w-full mb-6 rounded-md p-3;
   }
-  
-   
-  }
+}
 
-  /* Tag component for category tags */
-  .tag {
-    @apply px-3 py-2 bg-dropp-gray-100 text-dropp-gray-700 rounded-full text-sm font-medium hover:bg-dropp-gray-200 transition-colors duration-200;
-  }
+/* Tag component for category tags */
+.tag {
+  @apply px-3 py-2 bg-dropp-gray-100 text-dropp-gray-700 rounded-full text-sm font-medium hover:bg-dropp-gray-200 transition-colors duration-200;
+}
 
-  .tag.clickable {
-    @apply cursor-pointer;
-  }
+.tag.clickable {
+  @apply cursor-pointer;
+}
 
-  /* Thumbnail gallery component */
-  .thumbnail-gallery {
-    @apply flex space-x-3;
-  }
+/* Thumbnail gallery component */
+.thumbnail-gallery {
+  @apply flex space-x-3;
+}
 
-  .thumbnail-btn {
-    @apply aspect-square w-20 h-20 bg-dropp-gray-100 rounded-lg overflow-hidden border-2 border-transparent hover:border-dropp-gray-300 transition-all duration-200 cursor-pointer;
-  }
+.thumbnail-btn {
+  @apply aspect-square w-20 h-20 bg-dropp-gray-100 rounded-lg overflow-hidden border-2 border-transparent hover:border-dropp-gray-300 transition-all duration-200 cursor-pointer;
+}
 
-  .thumbnail-btn.active {
-    @apply border-dropp-primary;
-  }
+.thumbnail-btn.active {
+  @apply border-dropp-primary;
+}
 
-  /* Bid history item component */
-  .bid-item {
-    @apply flex justify-between items-center p-4 rounded-lg transition-colors duration-200;
-  }
+/* Bid history item component */
+.bid-item {
+  @apply flex justify-between items-center p-4 rounded-lg transition-colors duration-200;
+}
 
-  .bid-item.current {
-    @apply bg-dropp-gray-50 border border-dropp-primary/20;
-  }
+.bid-item.current {
+  @apply bg-dropp-gray-50 border border-dropp-primary/20;
+}
 
-  .bid-item.previous {
-    @apply bg-white border border-dropp-gray-200;
-  }
+.bid-item.previous {
+  @apply bg-white border border-dropp-gray-200;
+}
 
-  /* Auction info card component */
-  .auction-info-card {
-    @apply bg-dropp-gray-50 rounded-lg p-6;
-  }
+/* Auction info card component */
+.auction-info-card {
+  @apply bg-dropp-gray-50 rounded-lg p-6;
+}
 
-  .auction-stat {
-    @apply text-center;
-  }
+.auction-stat {
+  @apply text-center;
+}
 
-  .auction-stat-label {
-    @apply text-sm text-dropp-gray-600 mb-1;
-  }
+.auction-stat-label {
+  @apply text-sm text-dropp-gray-600 mb-1;
+}
 
-  .auction-stat-value {
-    @apply text-2xl font-bold font-archivo;
-  }
+.auction-stat-value {
+  @apply text-2xl font-bold font-archivo;
+}
 
-  .auction-stat-value.primary {
-    @apply text-dropp-primary;
-  }
+.auction-stat-value.primary {
+  @apply text-dropp-primary;
+}
 
-  .auction-stat-value.urgent {
-    @apply text-red-500;
-  }
+.auction-stat-value.urgent {
+  @apply text-red-500;
+}
 
-  /* Breadcrumb component */
-  .breadcrumb {
-    @apply text-dropp-gray-600 text-lg;
-  }
+/* Breadcrumb component */
+.breadcrumb {
+  @apply text-dropp-gray-600 text-lg;
+}
 
-  .breadcrumb a {
-    @apply hover:text-dropp-primary transition-colors duration-200;
-  }
+.breadcrumb a {
+  @apply hover:text-dropp-primary transition-colors duration-200;
+}
 
-  .breadcrumb-separator {
-    @apply text-dropp-primary mx-2;
-  }
-  .time-overlay {
-    @apply absolute top-2 right-2 bg-dropp-gray-800/80 text-white text-xs font-medium px-2 py-1 rounded-md backdrop-blur-sm;
-  }
+.breadcrumb-separator {
+  @apply text-dropp-primary mx-2;
+}
+.time-overlay {
+  @apply absolute top-2 right-2 bg-dropp-gray-800/80 text-white text-xs font-medium px-2 py-1 rounded-md backdrop-blur-sm;
+}
 
-  .time-overlay.urgent {
-    @apply bg-dropp-red-500/90;
-  }
-
+.time-overlay.urgent {
+  @apply bg-dropp-red-500/90;
+}
 
 /* @import "tailwindcss";
 

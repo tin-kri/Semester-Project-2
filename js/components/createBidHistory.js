@@ -1,19 +1,19 @@
 export function createBidHistory(bids) {
-    if (!bids || bids.length === 0) {
-      return `
+  if (!bids || bids.length === 0) {
+    return `
         <div class="text-center py-8 text-dropp-gray-500">
           <p>No bids yet - Be the first to bid!</p>
         </div>
       `;
-    }
+  }
 
-    // Sorts the bids by amount with the highest first and is showing only 5
-    const sortedBids = [...bids].sort((a, b) => b.amount - a.amount);
+  // Sorts the bids by amount with the highest first and is showing only 5
+  const sortedBids = [...bids].sort((a, b) => b.amount - a.amount);
 
-    return sortedBids
-      .slice(0, 5)
-      .map(
-        (bid, index) => `
+  return sortedBids
+    .slice(0, 5)
+    .map(
+      (bid, index) => `
           <div class="flex justify-between items-center p-4 bg-dropp-gray-50 rounded-lg">
             <div>
               <p class="font-semibold text-dropp-dark">${
@@ -30,6 +30,6 @@ export function createBidHistory(bids) {
             </p>
           </div>
         `,
-      )
-      .join('');
-  }
+    )
+    .join('');
+}
