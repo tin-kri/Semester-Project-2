@@ -1,10 +1,10 @@
 
 export function showMessage(message, type = 'error', options = {}) {
   const {
-    elementId = null,           
-    container = 'main',         
-    duration = 5000,           
-    position = 'top'           
+    elementId = null,
+    container = 'main',
+    duration = 5000,
+    position = 'top',
   } = options;
 
 
@@ -29,7 +29,7 @@ export function showMessage(message, type = 'error', options = {}) {
     } else {
       containerEl.appendChild(messageDiv);
     }
-    
+
     if (duration > 0) {
       setTimeout(() => messageDiv.remove(), duration);
     }

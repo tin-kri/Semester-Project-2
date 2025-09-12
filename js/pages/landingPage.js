@@ -1,18 +1,18 @@
 import {
   fetchEndingSoonListings,
   fetchNewestListings,
-} from "../api/listings.js";
-import { createListingCard } from "../components/listingCard.js";
-import { setHTML, showLoading, showError, showEmpty } from "../utils/dom.js";
+} from '../api/listings.js';
+import { createListingCard } from '../components/listingCard.js';
+import { setHTML, showLoading, showError, showEmpty } from '../utils/dom.js';
 
 export function initLandingPage() {
-  console.log("Loading landing page...");
+  console.log('Loading landing page...');
   loadListings();
 }
 
 async function loadListings() {
-  showLoading("#ending-soon-listings", "Loading ending soon...");
-  showLoading("#newest-listings", "Loading newest listings...");
+  showLoading('#ending-soon-listings', 'Loading ending soon...');
+  showLoading('#newest-listings', 'Loading newest listings...');
 
   try {
     const [endingSoonData, newestData] = await Promise.all([
@@ -23,15 +23,15 @@ async function loadListings() {
     renderEndingSoon(endingSoonData.data || []);
     renderNewest(newestData.data || []);
   } catch (error) {
-    console.error("Failed to load listings:", error);
-    showError("#ending-soon-listings", "Failed to load auctions");
-    showError("#newest-listings", "Failed to load listings");
+    console.error('Failed to load listings:', error);
+    showError('#ending-soon-listings', 'Failed to load auctions');
+    showError('#newest-listings', 'Failed to load listings');
   }
 }
 
 function renderEndingSoon(listings) {
   if (listings.length === 0) {
-    showEmpty("#ending-soon-listings", "No auctions ending soon");
+    showEmpty('#ending-soon-listings', 'No auctions ending soon');
     return;
   }
 
@@ -39,14 +39,14 @@ function renderEndingSoon(listings) {
   const cards = listings
     .slice(0, 3) // Show only 3 cards
     .map((listing) => createListingCard(listing, true)) // true = show time left
-    .join("");
+    .join('');
 
-  setHTML("#ending-soon-listings", cards);
+  setHTML('#ending-soon-listings', cards);
 }
 
 function renderNewest(listings) {
   if (listings.length === 0) {
-    showEmpty("#newest-listings", "No new listings available");
+    showEmpty('#newest-listings', 'No new listings available');
     return;
   }
 
@@ -54,9 +54,9 @@ function renderNewest(listings) {
   const cards = listings
     .slice(0, 3) // Show only 3 cards
     .map((listing) => createListingCard(listing, false)) // false = don't show time left
-    .join("");
+    .join('');
 
-  setHTML("#newest-listings", cards);
+  setHTML('#newest-listings', cards);
 }
 
 window.viewListing = function (listingId) {

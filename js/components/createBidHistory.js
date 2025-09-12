@@ -6,10 +6,10 @@ export function createBidHistory(bids) {
         </div>
       `;
     }
-  
+
     // Sorts the bids by amount with the highest first and is showing only 5
     const sortedBids = [...bids].sort((a, b) => b.amount - a.amount);
-  
+
     return sortedBids
       .slice(0, 5)
       .map(
@@ -17,19 +17,19 @@ export function createBidHistory(bids) {
           <div class="flex justify-between items-center p-4 bg-dropp-gray-50 rounded-lg">
             <div>
               <p class="font-semibold text-dropp-dark">${
-                bid.bidder?.name || "Anonymous"
+                bid.bidder?.name || 'Anonymous'
               }</p>
               <p class="text-sm text-dropp-gray-600">${new Date(
-                bid.created
+                bid.created,
               ).toLocaleDateString()}</p>
             </div>
             <p class="text-lg font-bold font-archivo ${
-              index === 0 ? "text-dropp-primary" : "text-dropp-gray-700"
+              index === 0 ? 'text-dropp-primary' : 'text-dropp-gray-700'
             }">
               ${bid.amount} credits
             </p>
           </div>
-        `
+        `,
       )
       .join('');
   }

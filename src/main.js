@@ -6,5 +6,5 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Auction House starting...');
     initializeApp();
     initializeHeader();
-    
+
 });
