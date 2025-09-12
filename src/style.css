@@ -144,8 +144,15 @@
     @apply text-center;
   }
 
+  .form-success {
+    @apply text-dropp-gray-50 bg-dropp-secondary border border-dropp-primary/20 text-sm text-center w-full mb-6 rounded-md p-3;
+  }
+  
   .form-error {
-    @apply text-red-500 text-sm text-center mb-6;
+    @apply text-dropp-gray-50 bg-dropp-red-500 border border-dropp-red-500/20 text-sm text-center w-full mb-6 rounded-md p-3;
+  }
+  
+   
   }
 
   /* Tag component for category tags */
@@ -227,7 +234,7 @@
   .time-overlay.urgent {
     @apply bg-dropp-red-500/90;
   }
-}
+
 
 /* @import "tailwindcss";
 

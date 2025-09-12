@@ -1,4 +1,5 @@
-import { createListing } from "../api/createListing";
+import { createListing } from "../api/createListing.js";
+import { showSuccess, showError} from "../utils/messages.js";
 
 export async function initCreateNewListing() {
   const createNewListingForm = document.querySelector("#create-listing-form");
@@ -24,8 +25,13 @@ async function handleFormSubmit(event) {
   try {
     const result = await createListing(listingData);
     console.log("Listing created successfully:", result);
+    showSuccess("Listing created successfully!", { duration: 3000 });
+    setTimeout(() => {
+      window.location.href = "/profile/";
+    }, 5000);
   } catch (error) {
     console.error("Failed to create listing:", error);
+    showError("Failed to create listing. Please try again.");
   }
 }
 
