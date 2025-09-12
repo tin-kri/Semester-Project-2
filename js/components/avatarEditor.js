@@ -36,9 +36,8 @@ export function initAvatarEditor(
     formElement.appendChild(cancelBtn);
 
     formElement.classList.remove("hidden");
-    editButton.classList.add("hidden");
+    editButton.style.display = "none";
     hideOtherEditor();
-
     saveBtn.onclick = () => saveAvatar(urlInput.value, altInput.value);
     cancelBtn.onclick = exitEditMode;
 
@@ -47,8 +46,8 @@ export function initAvatarEditor(
 
   function exitEditMode() {
     formElement.innerHTML = "";
-    formElement.classList.add("hidden");
-    editButton.classList.remove("hidden");
+    editButton.style.display = "block";
+    // editButton.classList.remove("hidden");
     showOtherEditor();
   }
   function saveAvatar(url, alt) {
