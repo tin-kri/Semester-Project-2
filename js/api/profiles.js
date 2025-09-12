@@ -1,5 +1,8 @@
 import { API_CONFIG } from '../utils/constants.js';
-import { makeAuthenticatedRequest, getCurrentUser } from '../utils/authUtils.js';
+import {
+  makeAuthenticatedRequest,
+  getCurrentUser,
+} from '../utils/authUtils.js';
 
 function buildProfileUrl(username, endpoint = '') {
   return `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.PROFILES}/${username}${endpoint}`;

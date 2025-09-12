@@ -69,6 +69,6 @@ export function initAvatarEditor(
         currentAvatar = { url: trimmedUrl, alt: trimmedAlt };
         exitEditMode();
       })
-      .catch((error) => console.error('Save failed:', error));
+      .catch(error => console.error('Save failed:', error));
   }
 }

@@ -56,9 +56,8 @@ function updateCurrentBid(bids) {
   document.querySelector('#single-listing-current-bid').textContent =
     currentBid > 0 ? `${currentBid} credits` : 'No bids yet';
 
-  document.querySelector(
-    '#single-listing-bid-count',
-  ).textContent = `${bidCount} bid${bidCount !== 1 ? 's' : ''}`;
+  document.querySelector('#single-listing-bid-count').textContent =
+    `${bidCount} bid${bidCount !== 1 ? 's' : ''}`;
 }
 
 function updateTimeRemaining(endsAt) {
@@ -71,7 +70,9 @@ function updateTimeRemaining(endsAt) {
 }
 
 function updateSeller(seller) {
-  if (!seller) {return;}
+  if (!seller) {
+    return;
+  }
 
   document.querySelector('#single-listing-seller-name').textContent =
     seller.name;
@@ -97,7 +98,6 @@ async function handleBidSuccess(listingId, bidAmount) {
   //  place the bid
   await placeBid(listingId, bidAmount);
 
-
   showSuccess(`Bid of ${bidAmount} credits placed successfully!`);
 
   // Reload listing data to show new bid
@@ -109,9 +109,10 @@ function handleBidError(errorMessage) {
   showError(errorMessage); // Using utility function
 }
 
-
 // Utility function
 function getCurrentBid(bids) {
-  if (!bids || bids.length === 0) {return 0;}
-  return Math.max(...bids.map((bid) => bid.amount));
+  if (!bids || bids.length === 0) {
+    return 0;
+  }
+  return Math.max(...bids.map(bid => bid.amount));
 }

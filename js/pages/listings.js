@@ -111,32 +111,43 @@ function handleClearFilters() {
 // Separate filter functions - each with single responsibility
 
 function applySearchFilter(listings, searchQuery) {
-  if (!searchQuery) {return listings;}
+  if (!searchQuery) {
+    return listings;
+  }
 
   const query = searchQuery.toLowerCase();
 
   return listings.filter(listing => {
-    if (!listing) {return false;}
+    if (!listing) {
+      return false;
+    }
 
     const searchableText = [
       listing.title || '',
       listing.description || '',
       listing.tags ? listing.tags.join(' ') : '',
-    ].join(' ').toLowerCase();
+    ]
+      .join(' ')
+      .toLowerCase();
 
     return searchableText.includes(query);
   });
 }
 
 function applyTagFilter(listings, tag) {
-  if (!tag) {return listings;}
+  if (!tag) {
+    return listings;
+  }
 
   return listings.filter(listing => {
-    if (!listing || !Array.isArray(listing.tags)) {return false;}
+    if (!listing || !Array.isArray(listing.tags)) {
+      return false;
+    }
 
-    return listing.tags.some(listingTag =>
-      typeof listingTag === 'string' &&
-      listingTag.toLowerCase() === tag.toLowerCase(),
+    return listing.tags.some(
+      listingTag =>
+        typeof listingTag === 'string' &&
+        listingTag.toLowerCase() === tag.toLowerCase(),
     );
   });
 }
@@ -146,28 +157,28 @@ function applySorting(listings, sortType) {
 
   switch (sortType) {
     case 'newest':
-      return sortedListings.sort((a, b) =>
-        new Date(b.created || 0) - new Date(a.created || 0),
+      return sortedListings.sort(
+        (a, b) => new Date(b.created || 0) - new Date(a.created || 0),
       );
 
     case 'ending-soon':
-      return sortedListings.sort((a, b) =>
-        new Date(a.endsAt || 0) - new Date(b.endsAt || 0),
+      return sortedListings.sort(
+        (a, b) => new Date(a.endsAt || 0) - new Date(b.endsAt || 0),
       );
 
     case 'popularity':
-      return sortedListings.sort((a, b) =>
-        (b._count?.bids || 0) - (a._count?.bids || 0),
+      return sortedListings.sort(
+        (a, b) => (b._count?.bids || 0) - (a._count?.bids || 0),
       );
 
     case 'price-low':
-      return sortedListings.sort((a, b) =>
-        getHighestBid(a.bids) - getHighestBid(b.bids),
+      return sortedListings.sort(
+        (a, b) => getHighestBid(a.bids) - getHighestBid(b.bids),
       );
 
     case 'price-high':
-      return sortedListings.sort((a, b) =>
-        getHighestBid(b.bids) - getHighestBid(a.bids),
+      return sortedListings.sort(
+        (a, b) => getHighestBid(b.bids) - getHighestBid(a.bids),
       );
 
     default:
@@ -191,7 +202,9 @@ function validateListingsData(listings) {
 function renderFilteredListings() {
   try {
     // Early return for invalid data
-    if (!validateListingsData(allListings)) {return;}
+    if (!validateListingsData(allListings)) {
+      return;
+    }
 
     // Apply filters in sequence using function composition
     let filteredListings = allListings;
@@ -202,7 +215,6 @@ function renderFilteredListings() {
     // Render results
     renderListings(filteredListings);
     updateResultsCount(filteredListings.length, currentSearchQuery, currentTag);
-
   } catch (error) {
     console.error('Error filtering and rendering listings:', error);
     showError('#listings-grid', 'Failed to display listings');
@@ -220,7 +232,7 @@ function renderListings(listings) {
   }
 
   const cards = listings
-    .map((listing) => createBrowseListingCard(listing))
+    .map(listing => createBrowseListingCard(listing))
     .join('');
   setHTML('#listings-grid', cards);
 }
@@ -243,7 +255,9 @@ function updateResultsCount(count, searchQuery = '', tag = null) {
   }
 
   const element = document.getElementById('results-count');
-  if (element) {element.textContent = text;}
+  if (element) {
+    element.textContent = text;
+  }
 }
 
 /**
@@ -252,8 +266,10 @@ function updateResultsCount(count, searchQuery = '', tag = null) {
  * @returns {number} Highest bid amount, or 0 if no bids
  */
 function getHighestBid(bids) {
-  if (!bids || bids.length === 0) {return 0;}
-  return Math.max(...bids.map((bid) => bid.amount));
+  if (!bids || bids.length === 0) {
+    return 0;
+  }
+  return Math.max(...bids.map(bid => bid.amount));
 }
 
 window.viewListing = function (listingId) {

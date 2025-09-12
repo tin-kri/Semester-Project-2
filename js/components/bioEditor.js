@@ -46,6 +46,6 @@ export function initBioEditor(
         currentBio = newBio;
         exitEditMode();
       })
-      .catch((error) => console.error('Save failed:', error));
+      .catch(error => console.error('Save failed:', error));
   }
 }

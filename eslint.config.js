@@ -2,7 +2,6 @@
 // import globals from "globals";
 // import { defineConfig } from "eslint/config";
 
-
 // export default defineConfig([
 //   { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"] },
 //   { files: ["**/*.{js,mjs,cjs}"], languageOptions: { globals: globals.browser } },
@@ -37,16 +36,16 @@ export default [
     },
     rules: {
       // Customize rules for your auction website
-      'no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'no-console': 'warn', // Allow console.log in development but warn
       'prefer-const': 'error',
       'no-var': 'error',
-      'curly': 'error',
+      curly: 'error',
       'no-multi-spaces': 'error',
       'no-trailing-spaces': 'error',
       'comma-dangle': ['error', 'always-multiline'],
-      'semi': ['error', 'always'],
-      'quotes': ['error', 'single', { 'avoidEscape': true }],
+      semi: ['error', 'always'],
+      quotes: ['error', 'single', { avoidEscape: true }],
     },
   },
   // Apply recommended rules

@@ -22,22 +22,33 @@ This project is a front-end application that interfaces with the Noroff API to p
 ### Installation
 
 1. Clone the repo
+
    ```bash
-   git clone https://github.com/tin-kri/Semester-Project-2.git 
+   git clone https://github.com/tin-kri/Semester-Project-2.git
+
+   ```
 
 2. Install dependencies
+
    ```bash
    npm install
 
+   ```
+
 3. Start the development server
+
    ```bash
    npm run dev
 
-4. Build for production 
+   ```
+
+4. Build for production
    ```bash
    npm run build
+   ```
 
 ### Features
+
 - User registration and authentication
 - Profile management with avatar updates
 - Credit system for bidding and selling
@@ -46,5 +57,5 @@ This project is a front-end application that interfaces with the Noroff API to p
 - Search functionality for all visitors
 
 ### API Integration
-The application uses the Noroff Auction API. Documentation can be found here https://api.noroff.dev/docs/static/index.html
 
+The application uses the Noroff Auction API. Documentation can be found here https://api.noroff.dev/docs/static/index.html

@@ -8,7 +8,7 @@ export function initSearchComponent(onSearchChange) {
     return;
   }
 
-  searchInput.addEventListener('input', (e) => {
+  searchInput.addEventListener('input', e => {
     const query = e.target.value.trim();
 
     // Debounced search

@@ -37,7 +37,9 @@ function renderProfileData(data) {
 }
 
 function updateAvatarImage(avatarData) {
-  if (!avatarData?.url) {return;}
+  if (!avatarData?.url) {
+    return;
+  }
 
   const avatarContainer = document.querySelector('#profile-user-img');
   const img = document.createElement('img');
@@ -63,7 +65,9 @@ function showProfileMessage(message, type) {
 }
 
 function initializeBioEditor(currentBio) {
-  if (bioEditorInitialized) {return;}
+  if (bioEditorInitialized) {
+    return;
+  }
 
   const bioElement = document.querySelector('#profile-user-bio');
   const editButton = document.querySelector('#edit-bio');
@@ -86,7 +90,9 @@ function initializeBioEditor(currentBio) {
 }
 
 function initializeAvatarEditor(currentAvatar) {
-  if (avatarEditorInitialized) {return;}
+  if (avatarEditorInitialized) {
+    return;
+  }
 
   const formElement = document.querySelector('#avatar-edit-form');
   const editButton = document.querySelector('#change-avatar');
