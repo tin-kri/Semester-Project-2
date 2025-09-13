@@ -12,10 +12,15 @@ export function showMessage(message, type = 'error', options = {}) {
       element.textContent = message;
       element.className = type === 'success' ? 'form-success' : 'form-error';
       element.classList.remove('hidden');
+      if (duration > 0) {
+        setTimeout(() => {
+          element.classList.add('hidden');
+          element.textContent = '';
+        }, duration);
+      }
       return element;
     }
   }
-
   const messageDiv = document.createElement('div');
   messageDiv.className = type === 'success' ? 'form-success' : 'form-error';
   messageDiv.textContent = message;
@@ -27,12 +32,10 @@ export function showMessage(message, type = 'error', options = {}) {
     } else {
       containerEl.appendChild(messageDiv);
     }
-
     if (duration > 0) {
       setTimeout(() => messageDiv.remove(), duration);
     }
   }
-
   return messageDiv;
 }
 
