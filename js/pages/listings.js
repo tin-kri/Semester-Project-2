@@ -6,7 +6,7 @@ import {
 } from '../components/filterComponent.js';
 import { showError, showLoading, showEmpty, setHTML } from '../utils/dom.js';
 import { initSearchComponent } from '../components/searchComponent.js';
-
+import { createSkeletonCards } from '../components/skeletonCard.js';
 // Global state for filtering and sorting
 let allListings = [];
 let currentTag = null;
@@ -35,7 +35,8 @@ export async function initBrowseListingsPage() {
  */
 async function loadAllListings() {
   try {
-    showLoading('#listings-grid', 'Loading listings...');
+    setHTML('#listings-grid', createSkeletonCards(100));
+    // showLoading('#listings-grid', 'Loading listings...');
     const data = await fetchBrowseListings();
 
     // Validate API response structure to prevent runtime errors

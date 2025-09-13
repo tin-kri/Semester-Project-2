@@ -3,7 +3,8 @@ import {
   fetchNewestListings,
 } from '../api/listings.js';
 import { createListingCard } from '../components/listingCard.js';
-import { setHTML, showLoading, showError, showEmpty } from '../utils/dom.js';
+import { setHTML, showError, showEmpty } from '../utils/dom.js';
+import { createSkeletonCards } from '../components/skeletonCard.js';
 
 export function initLandingPage() {
   console.log('Loading landing page...');
@@ -11,9 +12,8 @@ export function initLandingPage() {
 }
 
 async function loadListings() {
-  showLoading('#ending-soon-listings', 'Loading ending soon...');
-  showLoading('#newest-listings', 'Loading newest listings...');
-
+  setHTML('#ending-soon-listings', createSkeletonCards(3));
+  setHTML('#newest-listings', createSkeletonCards(3));
   try {
     const [endingSoonData, newestData] = await Promise.all([
       fetchEndingSoonListings(),

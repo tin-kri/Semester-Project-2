@@ -5,7 +5,7 @@ export function createBrowseListingCard(listing) {
   const highestBid = getHighestBid(listing.bids);
   const timeLeft = getTimeLeft(listing.endsAt); // Fixed: Actually call the function
   const isUrgent = isTimeUrgent(listing.endsAt); // Fixed: Actually call the function
-
+//removed onerror="this.src='/placeholder.svg?height=192&width=256'" infinity request svg
   return `
       <div class="bg-white rounded-lg p-6">
         <div class="relative w-full h-48 bg-dropp-gray-200 rounded-lg mb-4 overflow-hidden">
@@ -13,7 +13,7 @@ export function createBrowseListingCard(listing) {
             src="${image}"
             alt="${listing.title}"
             class="w-full h-full object-cover rounded-lg"
-            onerror="this.src='/placeholder.svg?height=192&width=256'"
+            
           />
           <div class="time-overlay ${isUrgent ? 'urgent' : ''}">
             ${timeLeft}
