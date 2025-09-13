@@ -1,8 +1,12 @@
 export function calculateTimeLeft(endsAt) {
   const now = new Date();
   const endTime = new Date(endsAt);
-  const diff = endTime - now;
 
+  if (isNaN(endTime.getTime())) {
+    return { isEnded: true, days: 0, hours: 0, minutes: 0 };
+  }
+
+  const diff = endTime - now;
   if (diff <= 0) {
     return { isEnded: true, days: 0, hours: 0, minutes: 0 };
   }
