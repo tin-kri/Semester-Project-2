@@ -4,7 +4,7 @@ export function createListingCard(listing, showTimeLeft = false) {
   const bidCount = listing._count?.bids || 0;
   const highestBid = getHighestBid(listing.bids);
   const timeLeft = showTimeLeft ? getTimeLeft(listing.endsAt) : '';
-
+//Removed onerror="this.src='/placeholder.svg?height=192&width=256'" request error infinity
   return `
         <div class="bg-dropp-gray-50 rounded-lg p-6">
             <div class="w-full h-48 bg-dropp-gray-200 rounded-lg mb-4 overflow-hidden">
@@ -12,9 +12,10 @@ export function createListingCard(listing, showTimeLeft = false) {
                     src="${image}" 
                     alt="${listing.title}" 
                     class="w-full h-full object-cover rounded-lg"
-                    onerror="this.src='/placeholder.svg?height=192&width=256'"
+                    
                 />
             </div>
+            
             
             <h3 class="text-lg font-semibold font-archivo text-dropp-dark mb-2">
                 ${listing.title}
