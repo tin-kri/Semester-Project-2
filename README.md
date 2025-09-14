@@ -1,10 +1,6 @@
 # DROPP// - Auction House
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://your-netlify-url.netlify.app)
-
 An online auction platform where users can list items for sale and bid on others' listings. Built as a front-end application that interfaces with the Noroff API to provide comprehensive auction functionality.
-
-![DROPP Auction Platform Screenshot](https://via.placeholder.com/800x400/1a9cb0/ffffff?text=DROPP+Auction+Platform)
 
 ## 📋 Table of Contents
 
@@ -23,21 +19,21 @@ This project is a front-end application that interfaces with the Noroff API to p
 
 The application follows modern web development practices using Vite for fast development, Tailwind CSS for styling, and a modular JavaScript architecture for maintainability.
 
-## 👤 User Stories
+##  User Stories
 
 The client has specified the following requirements:
 
-- ✅ A user with a `stud.noroff.no` email may register
-- ✅ A registered user may login
-- ✅ A registered user may logout
-- ✅ A registered user may update their avatar
-- ✅ A registered user may view their total credit
-- ✅ A registered user may create a Listing with a title, deadline date, media gallery and description
-- ✅ A registered user may add a Bid to another user's Listing
-- ✅ A registered user may view Bids made on a Listing
-- ✅ An unregistered user may search through Listings
+-  A user with a `stud.noroff.no` email may register
+-  A registered user may login
+-  A registered user may logout
+-  A registered user may update their avatar
+-  A registered user may view their total credit
+-  A registered user may create a Listing with a title, deadline date, media gallery and description
+-  A registered user may add a Bid to another user's Listing
+-  A registered user may view Bids made on a Listing
+-  An unregistered user may search through Listings
 
-## 🛠 Built With
+##  Built With
 
 ### Technologies
 - **[Vite](https://vitejs.dev/)** - Fast build tool and development server
@@ -75,7 +71,7 @@ The client has specified the following requirements:
 - Loading states and error handling
 - Intuitive navigation and user feedback
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -96,43 +92,42 @@ Ensure you have the following installed:
    npm install
    ```
 
-3. **Start the development server**
+3. **Set up environment variables**
+   
+   Copy the example environment file and configure it:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Update the `.env` file with your credentials:
+   ```env
+   VITE_APP_NAME="DROPP"
+   VITE_API_BASE_URL=https://v2.api.noroff.dev
+   VITE_API_KEY=your_api_key_here
+   VITE_TEST_USER_EMAIL=test@stud.noroff.no
+   VITE_TEST_USER_PASSWORD=secret123
+   ```
+   
+  **Important**: Replace `your_api_key_here` with your actual Noroff API key
+
+4. **Start the development server**
    ```bash
    npm run dev
    ```
    The application will be available at `http://localhost:5173`
 
-4. **Build for production**
-   ```bash
-   npm run build
-   ```
-
-5. **Preview production build**
-   ```bash
-   npm run preview
-   ```
-
-### Environment Setup
-
-No additional environment variables are required as the application uses the public Noroff API endpoints.
-
-## 🔌 API Integration
+##  API Integration
 
 The application integrates with the **Noroff Auction API v2**:
 - **Base URL**: `https://v2.api.noroff.dev`
 - **Documentation**: [Noroff API Docs](https://api.noroff.dev/docs/static/index.html)
 
-## 🌐 Deployment
+##  Deployment
 
 ### Live Demo
-🔗 **[View Live Demo](https://your-netlify-url.netlify.app)**
-
-### Deployment Steps
 The application is deployed on Netlify:
+ **[View Live Demo](https://https://dropp-semester-project-2.netlify.app/)**
 
-1. Build the project: `npm run build`
-2. Deploy the `dist` folder to Netlify
-3. Configure redirects for SPA routing
 
 ### Build Commands
 ```bash
@@ -146,7 +141,7 @@ npm run build
 npm run preview
 ```
 
-## 🧪 Testing
+##  Testing
 
 ### Manual Testing
 1. Register a new account with a `stud.noroff.no` email
