@@ -1,6 +1,6 @@
 export const API_CONFIG = {
-  API_KEY: 'caa49feb-b79f-4a81-af43-5b413d07215c',
-  BASE_URL: 'https://v2.api.noroff.dev',
+  API_KEY: import.meta.env.VITE_API_KEY,
+  BASE_URL: import.meta.env.VITE_API_BASE_URL,
 
   ENDPOINTS: {
     // Auth endpoints
