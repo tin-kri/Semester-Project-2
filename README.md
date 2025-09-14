@@ -2,7 +2,7 @@
 
 An online auction platform where users can list items for sale and bid on others' listings. Built as a front-end application that interfaces with the Noroff API to provide comprehensive auction functionality.
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Description](#description)
 - [User Stories](#user-stories)
@@ -13,7 +13,7 @@ An online auction platform where users can list items for sale and bid on others
 - [Deployment](#deployment)
 - [Testing](#testing)
 
-## 📖 Description
+##  Description
 
 This project is a front-end application that interfaces with the Noroff API to provide auction functionality. Users with a `stud.noroff.no` email can register, receive 1000 credits, and participate in auctions. Non-registered users can browse and search listings.
 
