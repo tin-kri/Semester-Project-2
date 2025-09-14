@@ -204,10 +204,10 @@
                 rows="4"
                 placeholder="Provide a detailed description of your item including condition, features and any relevant details"
                 class="w-full px-4 py-3 border border-dropp-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary transition-colors duration-200 resize-none"
-                aria-describedby="description-error description-counter"
+                aria-describedby="description-error"
               ></textarea>
               <div class="flex justify-between items-center mt-1">
-                <div class="error-message" role="alert"></div>
+                <div id="description-error" class="error-message" role="alert"></div>
               </div>
             </div>
           </section>
@@ -363,15 +363,15 @@
           >
             <a
               href="/index.html"
-              class="btn btn-md px-6 py-3 border border-dropp-gray-300 hover:bg-dropp-red-500 hover:text-dropp-gray-50 focus-visible:ring-dropp-gray-500"
+              class="btn-cancel btn-md"
             >
               Cancel
             </a>
             <button
               type="submit"
               id="submit-btn"
-              class="btn btn-primary btn-md px-6 py-3"
-            >
+              class="btn-primary btn-md">
+            
               Create Listing
             </button>
           </div>
