@@ -99,37 +99,8 @@ export async function fetchListingDetail() {
     throw error;
   }
 }
-// export async function fetchPopularTags() {
-//   // Fetch a sample of active listings to analyze tag frequency
-//   const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?_active=true&_seller=true&_bids=true`;
 
-//   try {
-//     const headers = isLoggedIn()
-//       ? getAuthHeaders()
-//       : { "Content-Type": "application/json" };
-
-//     const response = await fetch(url, { headers });
-
-//     if (!response.ok) {
-//       throw new Error("Failed to fetch listings for tag analysis");
-//     }
-
-//     const data = await response.json();
-//     const listings = data.data || [];
-
-//     // Analyze tags and return top 10 most popular
-//     const popularTags = analyzeTagsFromListings(listings);
-//
-
-//     return popularTags;
-
-//   } catch (error) {
-//     console.error("Failed to fetch popular tags:", error);
-//     throw error;
-//   }
-// }
 export async function fetchPopularTags() {
-  // This should already only get active listings
   const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?_active=true&_seller=true&_bids=true`;
 
   try {
@@ -144,12 +115,7 @@ export async function fetchPopularTags() {
     }
 
     const data = await response.json();
-    // Debug
-
     const listings = data.data || [];
-
-    // Debug: check if these listings are truly active
-
     const popularTags = analyzeTagsFromListings(listings);
 
     return popularTags;
@@ -174,8 +140,8 @@ function analyzeTagsFromListings(listings) {
 
   const tagArray = Object.entries(tagCounts)
     .map(([name, count]) => ({
-      name: name.charAt(0).toUpperCase() + name.slice(1), // Display name
-      filterValue: name, // Original lowercase for API filtering
+      name: name.charAt(0).toUpperCase() + name.slice(1), 
+      filterValue: name,
       count,
     }))
     .sort((a, b) => b.count - a.count)

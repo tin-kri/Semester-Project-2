@@ -34,10 +34,9 @@ function renderEndingSoon(listings) {
     return;
   }
 
-  // Create cards with time left shown
   const cards = listings
-    .slice(0, 3) // Show only 3 cards
-    .map(listing => createListingCard(listing, true)) // true = show time left
+    .slice(0, 3)
+    .map(listing => createListingCard(listing, true))
     .join('');
 
   setHTML('#ending-soon-listings', cards);
@@ -49,10 +48,9 @@ function renderNewest(listings) {
     return;
   }
 
-  // Create cards without time left
   const cards = listings
-    .slice(0, 3) // Show only 3 cards
-    .map(listing => createListingCard(listing, false)) // false = don't show time left
+    .slice(0, 3)
+    .map(listing => createListingCard(listing, false))
     .join('');
 
   setHTML('#newest-listings', cards);

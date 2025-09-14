@@ -86,6 +86,5 @@ function isTimeUrgent(endsAt) {
   const timeDiff = endTime - now;
   const hoursLeft = timeDiff / (1000 * 60 * 60);
 
-  // Urgent if less than 24 hours left
   return hoursLeft > 0 && hoursLeft <= 24;
 }

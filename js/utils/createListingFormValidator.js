@@ -1,13 +1,12 @@
 import { showError } from './messages.js';
 import { isAuctionEnded } from './timeUtils.js';
 
-// Common validation patterns
+// regex patterns
 export const PATTERNS = {
   url: /^https?:\/\/.+/,
   title: /^.{3,100}$/,
 };
 
-// Common validation functions
 export function validateTitle(field) {
   const value = field.value.trim();
 
@@ -29,7 +28,6 @@ export function validateTitle(field) {
 export function validateImageUrl(field) {
   const value = field.value.trim();
 
-  // Optional field - empty is valid
   if (!value) {
     clearFieldError('imageUrl');
     return true;
@@ -81,7 +79,7 @@ export function validateAuctionDateTime(dateValue, timeValue) {
   }
 }
 
-// Common helper functions
+
 export function showFieldError(fieldName, message) {
   showError(message, { elementId: `${fieldName}-error`, duration: 0 });
 }
@@ -94,7 +92,7 @@ export function clearFieldError(fieldName) {
   }
 }
 
-// Common form submission handling
+
 export function setupFormSubmission(
   button,
   loadingText = 'Creating Listing...',
@@ -109,7 +107,6 @@ export function setupFormSubmission(
   };
 }
 
-// Common field listeners setup
 export function setupFieldValidation(fieldSelector, validator) {
   const field = document.querySelector(fieldSelector);
   if (field) {

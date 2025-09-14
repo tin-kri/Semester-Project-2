@@ -5,7 +5,6 @@ export const API_CONFIG = {
   ENDPOINTS: {
     // Auth endpoints
     AUTH: {
-      // BASE: "/auth",
       REGISTER: '/auth/register',
       LOGIN: '/auth/login',
       CREATE_API_KEY: '/auth/create-api-key',

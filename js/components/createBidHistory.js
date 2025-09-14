@@ -6,8 +6,6 @@ export function createBidHistory(bids) {
         </div>
       `;
   }
-
-  // Sorts the bids by amount with the highest first and is showing only 5
   const sortedBids = [...bids].sort((a, b) => b.amount - a.amount);
 
   return sortedBids

@@ -72,7 +72,6 @@ export async function makeAuthenticatedRequest(url, options = {}) {
     headers,
   };
 
-  // If there's a body, make sure it's JSON
   if (options.body && typeof options.body === 'object') {
     fetchOptions.body = JSON.stringify(options.body);
   }

@@ -108,7 +108,6 @@ export function initBidForm(
     bidInput.disabled = true;
   }
 
-  // Utility functions
   function isAuctionEnded() {
     const now = new Date();
     const endTime = new Date(listing.endsAt);

@@ -128,7 +128,6 @@ function createLink(href, text, type, isPrimary = false) {
 }
 
 function addLogoutListener() {
-  // Use event delegation - single listener for all logout buttons
   document.addEventListener(
     'click',
     e => {
@@ -138,7 +137,7 @@ function addLogoutListener() {
       }
     },
     { once: true },
-  ); // Remove after first use
+  );
 }
 
 function handleLogout() {

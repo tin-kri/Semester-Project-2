@@ -23,10 +23,8 @@ async function loadListingDetail() {
   }
 }
 function displayListing(listing) {
-  // Update title
   document.querySelector('#single-listing-title').textContent = listing.title;
 
-  // Update main image
   const mainImage = document.querySelector('#single-listing-image');
   if (listing.media && listing.media.length > 0) {
     mainImage.src = listing.media[0].url;
@@ -35,16 +33,13 @@ function displayListing(listing) {
   setHTML('#single-listing-tag', createTagsDisplay(listing.tags));
   setHTML('#single-listing-bid-history', createBidHistory(listing.bids));
 
-  // Update all sections
   updateCurrentBid(listing.bids);
   updateTimeRemaining(listing.endsAt);
   updateSeller(listing.seller);
   updateDescription(listing.description);
 
-  // Initialize bid form component
   initializeBidForm(listing);
 
-  // Update browser tab title
   document.title = `${listing.title} - DROPP//`;
 }
 
@@ -92,21 +87,18 @@ function initializeBidForm(listing) {
 }
 
 async function handleBidSuccess(listingId, bidAmount) {
-  //  place the bid
   await placeBid(listingId, bidAmount);
 
   showSuccess(`Bid of ${bidAmount} credits placed successfully!`);
 
-  // Reload listing data to show new bid
   await loadListingDetail();
 }
 
 function handleBidError(errorMessage) {
   console.error('Bid error:', errorMessage);
-  showError(errorMessage); // Using utility function
+  showError(errorMessage);
 }
 
-// Utility function
 function getCurrentBid(bids) {
   if (!bids || bids.length === 0) {
     return 0;

@@ -1,13 +1,12 @@
 import { showError } from './messages.js';
 
-// Common validation patterns
+// regex validation patterns
 export const PATTERNS = {
   email: /^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/,
   password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
   username: /^[A-Za-z0-9_]+$/,
 };
 
-// Common validation functions
 export function validateEmail(field) {
   const value = field.value.trim();
 
@@ -68,7 +67,6 @@ export function validateUsername(field) {
   }
 }
 
-// Common helper functions
 export function showFieldError(fieldName, message) {
   showError(message, { elementId: `${fieldName}-error`, duration: 0 });
 }
@@ -81,7 +79,6 @@ export function clearFieldError(fieldName) {
   }
 }
 
-// Common form submission handling
 export function setupFormSubmission(button, loadingText = 'Processing...') {
   const originalText = button.textContent;
   button.textContent = loadingText;
@@ -93,7 +90,7 @@ export function setupFormSubmission(button, loadingText = 'Processing...') {
   };
 }
 
-// Common field listeners setup
+
 export function setupFieldValidation(fieldSelector, validator) {
   const field = document.querySelector(fieldSelector);
   if (field) {

@@ -16,7 +16,7 @@ export function initRegister() {
     return;
   }
 
-  // Setup validation
+
   setupFieldValidation('#name', validateUsername);
   setupFieldValidation('#email', validateEmail);
   setupFieldValidation('#password', validatePassword);
