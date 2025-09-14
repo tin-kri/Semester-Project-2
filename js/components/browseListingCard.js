@@ -44,7 +44,7 @@ export function createBrowseListingCard(listing) {
         
         <button
           onclick="viewListing('${listing.id}')"
-          class="w-full bg-dropp-gray-50 text-dropp-dark border border-gray-300  py-2 px-4 rounded-md hover:bg-dropp-primary/90 transition-colors"
+          class="w-full btn-md btn-primary"
         >
           View Auction
         </button>

@@ -1,5 +1,3 @@
-//todo create sort component
-
 import { fetchPopularTags } from '../api/listings.js';
 import { setHTML } from '../utils/dom.js';
 

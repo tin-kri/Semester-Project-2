@@ -43,14 +43,14 @@
   }
 
   .btn-primary {
-    @apply bg-dropp-gray-50 text-dropp-dark border border-gray-300 px-8 py-3 rounded-md font-semibold hover:bg-dropp-primary hover:text-white transition-colors;
+    @apply bg-dropp-gray-50 text-dropp-dark shadow-sm border border-gray-300 px-8 py-3 rounded-md font-semibold hover:bg-dropp-primary hover:text-white transition-colors;
   }
 
   .btn-secondary {
     @apply bg-dropp-secondary p-4 text-white hover:bg-dropp-secondary/90 focus-visible:ring-dropp-secondary;
   }
 .btn-cancel {
-  @apply bg-dropp-gray-50 text-dropp-dark border border-dropp-gray-300 px-8 py-3 rounded-md font-semibold hover:bg-dropp-red-500 hover:text-white transition-colors
+  @apply bg-dropp-gray-50 text-dropp-dark shadow-sm border border-dropp-gray-300 px-8 py-3 rounded-md font-semibold hover:bg-dropp-red-500 hover:text-white transition-colors
 }
   .btn-light {
     @apply bg-dropp-gray-200  hover:bg-dropp-light focus-visible:ring-dropp-primary;

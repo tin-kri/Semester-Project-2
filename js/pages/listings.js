@@ -7,6 +7,8 @@ import {
 import { showError, showEmpty, setHTML } from '../utils/dom.js';
 import { initSearchComponent } from '../components/searchComponent.js';
 import { createSkeletonCards } from '../components/skeletonCard.js';
+import { initMobileFiltersModal } from './mobileModal.js';
+
 // Global state for filtering and sorting
 let allListings = [];
 let currentTag = null;
@@ -18,6 +20,7 @@ let currentSearchQuery = '';
  */
 export async function initBrowseListingsPage() {
   try {
+    initMobileFiltersModal();
     await loadAllListings();
     await initTagFilters(handleTagChange, handleClearFilters);
     initSortFilters(handleSortChange);
@@ -146,7 +149,7 @@ function applyTagFilter(listings, tag) {
     return listing.tags.some(
       listingTag =>
         typeof listingTag === 'string' &&
-        listingTag.toLowerCase() === tag.toLowerCase(),
+        listingTag.toLowerCase() === tag.toLowerCase()
     );
   });
 }
@@ -157,27 +160,27 @@ function applySorting(listings, sortType) {
   switch (sortType) {
     case 'newest':
       return sortedListings.sort(
-        (a, b) => new Date(b.created || 0) - new Date(a.created || 0),
+        (a, b) => new Date(b.created || 0) - new Date(a.created || 0)
       );
 
     case 'ending-soon':
       return sortedListings.sort(
-        (a, b) => new Date(a.endsAt || 0) - new Date(b.endsAt || 0),
+        (a, b) => new Date(a.endsAt || 0) - new Date(b.endsAt || 0)
       );
 
     case 'popularity':
       return sortedListings.sort(
-        (a, b) => (b._count?.bids || 0) - (a._count?.bids || 0),
+        (a, b) => (b._count?.bids || 0) - (a._count?.bids || 0)
       );
 
     case 'price-low':
       return sortedListings.sort(
-        (a, b) => getHighestBid(a.bids) - getHighestBid(b.bids),
+        (a, b) => getHighestBid(a.bids) - getHighestBid(b.bids)
       );
 
     case 'price-high':
       return sortedListings.sort(
-        (a, b) => getHighestBid(b.bids) - getHighestBid(a.bids),
+        (a, b) => getHighestBid(b.bids) - getHighestBid(a.bids)
       );
 
     default:
