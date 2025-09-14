@@ -118,7 +118,6 @@ VITE_TEST_USER_PASSWORD=your_password
 ##  API Integration
 
 The application integrates with the **Noroff Auction API v2**:
-- **Base URL**: `https://v2.api.noroff.dev`
 - **Documentation**: [Noroff API Docs](https://api.noroff.dev/docs/static/index.html)
 
 ##  Deployment
