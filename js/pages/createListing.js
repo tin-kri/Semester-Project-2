@@ -38,7 +38,7 @@ function validateForm() {
   const isTimeValid = validateAuctionTime(timeField);
   const isDateTimeValid = validateAuctionDateTime(
     dateField.value,
-    timeField.value,
+    timeField.value
   );
 
   return (
@@ -95,7 +95,7 @@ function combineDateTime(date, time) {
 function buildListingData(formFields) {
   const endsAt = combineDateTime(
     formFields.auctionDate,
-    formFields.auctionTime,
+    formFields.auctionTime
   );
 
   const listingData = {

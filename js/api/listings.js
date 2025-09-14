@@ -12,7 +12,7 @@ export async function fetchBrowseListings() {
       throw new Error('Failed to fetch browse listings');
     }
     const data = await response.json();
-    
+
     return data;
   } catch (error) {
     console.error('failed to fetch browse listings', error);
@@ -35,7 +35,7 @@ export async function fetchEndingSoonListings() {
     }
 
     const data = await response.json();
-    
+
     return data;
   } catch (error) {
     console.error('Error fetching ending soon listings:', error);
@@ -58,7 +58,7 @@ export async function fetchNewestListings() {
     }
 
     const data = await response.json();
-    
+
     return data;
   } catch (error) {
     console.error('Error fetching newest listings:', error);
@@ -78,7 +78,7 @@ export async function fetchListingDetail() {
     API_CONFIG.BASE_URL
   }${API_CONFIG.ENDPOINTS.AUCTION.LISTING_DETAIL.replace(
     '<id>',
-    listingId,
+    listingId
   )}?_seller=true&_bids=true`;
 
   try {
@@ -92,7 +92,7 @@ export async function fetchListingDetail() {
       throw new Error('Failed to fetch listing detail');
     }
     const data = await response.json();
-    
+
     return data;
   } catch (error) {
     console.error('Error fetching listing detail:', error);
@@ -119,7 +119,7 @@ export async function fetchListingDetail() {
 
 //     // Analyze tags and return top 10 most popular
 //     const popularTags = analyzeTagsFromListings(listings);
-//     
+//
 
 //     return popularTags;
 
@@ -129,8 +129,6 @@ export async function fetchListingDetail() {
 //   }
 // }
 export async function fetchPopularTags() {
-  
-
   // This should already only get active listings
   const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?_active=true&_seller=true&_bids=true`;
 
@@ -146,16 +144,13 @@ export async function fetchPopularTags() {
     }
 
     const data = await response.json();
-     // Debug
+    // Debug
 
     const listings = data.data || [];
 
     // Debug: check if these listings are truly active
-    
-    .toISOString());
 
     const popularTags = analyzeTagsFromListings(listings);
-    
 
     return popularTags;
   } catch (error) {

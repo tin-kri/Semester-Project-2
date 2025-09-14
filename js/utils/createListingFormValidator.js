@@ -95,7 +95,10 @@ export function clearFieldError(fieldName) {
 }
 
 // Common form submission handling
-export function setupFormSubmission(button, loadingText = 'Creating Listing...') {
+export function setupFormSubmission(
+  button,
+  loadingText = 'Creating Listing...'
+) {
   const originalText = button.textContent;
   button.textContent = loadingText;
   button.disabled = true;
