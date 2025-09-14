@@ -151,7 +151,10 @@
   .form-error {
     @apply text-dropp-gray-50 bg-dropp-red-500 border border-dropp-red-500/20 text-sm text-center w-full mb-6 rounded-md p-3;
   }
+.hidden {
+  @apply hidden;
 }
+
 
 /* Tag component for category tags */
 .tag {
@@ -232,7 +235,7 @@
 .time-overlay.urgent {
   @apply bg-dropp-red-500/90;
 }
-
+}
 /* @import "tailwindcss";
 
 :root {
