@@ -134,11 +134,12 @@
           <div class="text-dropp-gray-600 text-md font-medium">
             <a
               href="../index.html"
-              class="hover:text-dropp-primary transition-colors"
+              class="hover:text-dropp-primary transition-colors font-light"
               >Home</a
             >
+            
             <span class="mx-2 text-dropp-primary">//</span>
-            <a href="#" class="text-dropp-primary ">Profile</a>
+            <a href="#" class="text-dropp-dark ">Profile</a>
           </div>
         </nav>
       </div>
@@ -236,122 +237,13 @@
           Ready to sell something?
         </h2>
         <p class="text-dropp-gray-600 mb-6">Create your next listing now!</p>
-        <a href="/create-listing/index.html" class="btn btn-primary px-6 py-2">
+        <a href="/create-listing/index.html" class="btn btn-primary bg-dropp-gray-50 text-dropp-dark border border-gray-300 px-8 py-3 rounded-md font-semibold hover:bg-dropp-primary hover:text-white transition-colors">
           Create Listing
         </a>
       </div>
 
-      <!-- Tabs Navigation -->
-      <div class="bg-white rounded-lg shadow-sm mb-8">
-        <div class="border-b border-dropp-gray-200">
-          <nav class="flex space-x-10 px-6">
-            <button
-              class="profile-tab active py-4 px-1 border-b-2 font-medium text-sm"
-              data-tab="listings"
-            >
-              My Listings
-            </button>
-            <button
-              class="profile-tab py-4 px-1 border-b-2 font-medium text-sm"
-              data-tab="bids"
-            >
-              My Bids
-            </button>
-            <button
-              class="profile-tab py-4 px-1 border-b-2 font-medium text-sm"
-              data-tab="wins"
-            >
-              Auctions Won
-            </button>
-          </nav>
-        </div>
-
-        <!-- Tab Content -->
-        <div class="p-6">
-          <!-- My Listings Tab -->
-          <div id="listings-tab" class="tab-content active">
-            <div
-              id="my-listings"
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              <!-- Dynamic content loaded here -->
-              <div class="text-center py-12 col-span-full">
-                <svg
-                  class="w-12 h-12 text-dropp-gray-300 mx-auto mb-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                  ></path>
-                </svg>
-                <p class="text-dropp-gray-500">Loading your listings...</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- My Bids Tab -->
-          <div id="bids-tab" class="tab-content hidden">
-            <h2 class="text-xl font-semibold font-archivo text-dropp-dark mb-6">
-              My Bids
-            </h2>
-
-            <div id="my-bids" class="space-y-4">
-              <!-- Dynamic content loaded here -->
-              <div class="text-center py-12">
-                <svg
-                  class="w-12 h-12 text-dropp-gray-300 mx-auto mb-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                  ></path>
-                </svg>
-                <p class="text-dropp-gray-500">Loading your bids...</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Won Auctions Tab -->
-          <div id="wins-tab" class="tab-content hidden">
-            <h2 class="text-xl font-semibold font-archivo text-dropp-dark mb-6">
-              Auctions Won
-            </h2>
-
-            <div
-              id="my-wins"
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              <!-- Dynamic content loaded here -->
-              <div class="text-center py-12 col-span-full">
-                <svg
-                  class="w-12 h-12 text-dropp-gray-300 mx-auto mb-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                <p class="text-dropp-gray-500">Loading your wins...</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    
+  
     </main>
     <!-- footer -->
     <footer class="bg-white border-t border-dropp-gray-200">

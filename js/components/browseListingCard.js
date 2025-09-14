@@ -29,7 +29,7 @@ export function createBrowseListingCard(listing) {
             <p class="text-dropp-gray-500 text-s">Current bid</p>
             ${
               highestBid
-                ? `<p class="text-dropp-primary font-semibold">${highestBid} credits</p>`
+                ? `<p class="text-dropp-dark font-semibold">${highestBid} credits</p>`
                 : '<p class="text-dropp-gray-500">No bids yet</p>'
             }
             <p class="text-xs text-dropp-gray-500">${bidCount} bid${
@@ -44,7 +44,7 @@ export function createBrowseListingCard(listing) {
         
         <button
           onclick="viewListing('${listing.id}')"
-          class="w-full bg-dropp-primary text-white py-2 px-4 rounded-md hover:bg-dropp-primary/90 transition-colors"
+          class="w-full bg-dropp-gray-50 text-dropp-dark border border-gray-300  py-2 px-4 rounded-md hover:bg-dropp-primary/90 transition-colors"
         >
           View Auction
         </button>
