@@ -96,7 +96,6 @@ function buildListingData(formFields) {
     endsAt: endsAt,
   };
 
-  // Add optional fields only if they have values
   if (formFields.description && formFields.description.trim()) {
     listingData.description = formFields.description.trim();
   }
@@ -115,17 +114,17 @@ function buildListingData(formFields) {
   return listingData;
 }
 
-// Helper function to process tags from input
+
 function processTags(tagInput) {
   if (!tagInput || !tagInput.trim()) {
-    return []; // Return empty array if no tags
+    return []; 
   }
 
-  // Split by comma, trim each tag, and filter out empty ones
+
   return tagInput
     .split(',')
     .map(tag => tag.trim())
     .filter(tag => tag.length > 0)
-    .slice(0, 5); // Limit to 10 tags max
+    .slice(0, 5); 
 }
 
