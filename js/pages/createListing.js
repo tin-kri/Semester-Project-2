@@ -1,4 +1,3 @@
-
 import { createListing } from '../api/createListing.js';
 import { showSuccess, showError } from '../utils/messages.js';
 import {
@@ -25,7 +24,6 @@ export function initCreateNewListing() {
   setupFieldValidation('#auctionTime', validateAuctionTime);
 
   createNewListingForm.addEventListener('submit', handleFormSubmit);
-  console.log('Create new listing page initialized successfully');
 }
 
 function validateForm() {
@@ -38,9 +36,18 @@ function validateForm() {
   const isImageUrlValid = validateImageUrl(imageUrlField);
   const isDateValid = validateAuctionDate(dateField);
   const isTimeValid = validateAuctionTime(timeField);
-  const isDateTimeValid = validateAuctionDateTime(dateField.value, timeField.value);
+  const isDateTimeValid = validateAuctionDateTime(
+    dateField.value,
+    timeField.value,
+  );
 
-  return isTitleValid && isImageUrlValid && isDateValid && isTimeValid && isDateTimeValid;
+  return (
+    isTitleValid &&
+    isImageUrlValid &&
+    isDateValid &&
+    isTimeValid &&
+    isDateTimeValid
+  );
 }
 
 async function handleFormSubmit(event) {
@@ -114,17 +121,14 @@ function buildListingData(formFields) {
   return listingData;
 }
 
-
 function processTags(tagInput) {
   if (!tagInput || !tagInput.trim()) {
-    return []; 
+    return [];
   }
-
 
   return tagInput
     .split(',')
     .map(tag => tag.trim())
     .filter(tag => tag.length > 0)
-    .slice(0, 5); 
+    .slice(0, 5);
 }
-

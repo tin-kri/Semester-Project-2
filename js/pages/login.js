@@ -19,7 +19,6 @@ export function initLogin() {
   setupFieldValidation('#password', validatePassword);
 
   loginForm.addEventListener('submit', onLoginFormSubmit);
-  console.log('Login page initialized successfully');
 }
 
 function validateForm() {

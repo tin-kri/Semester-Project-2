@@ -10,7 +10,6 @@ export async function createListing(listingData) {
       body: JSON.stringify(listingData),
     });
 
-    console.log('Listing created:', data);
     return data;
   } catch (error) {
     console.error('Error creating listing:', error);

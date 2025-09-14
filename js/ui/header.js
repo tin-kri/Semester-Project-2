@@ -13,7 +13,6 @@ function initializeMobileMenu() {
     mobileMenuButton.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
-    console.log('Mobile menu initialized');
   }
 }
 
@@ -39,10 +38,8 @@ function showAuthSection() {
       return;
     }
 
-    console.log('User logged in, showing user info:', user.name);
     showLoggedInUser(containers, user);
   } else {
-    console.log('User not logged in, showing login links');
     showGuestLinks(containers);
   }
 }
@@ -147,7 +144,6 @@ function addLogoutListener() {
 function handleLogout() {
   const confirmed = confirm('Are you sure you want to logout?');
   if (confirmed) {
-    console.log('User logging out...');
     logout();
   }
 }

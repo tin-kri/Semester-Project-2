@@ -17,8 +17,6 @@ let currentSearchQuery = '';
  * Initialize the browse listings page with filters and data loading
  */
 export async function initBrowseListingsPage() {
-  console.log('Loading browse listings page...');
-
   try {
     await loadAllListings();
     await initTagFilters(handleTagChange, handleClearFilters);

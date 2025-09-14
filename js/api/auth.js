@@ -20,7 +20,7 @@ export async function registerUser(userDetails) {
     }
 
     const data = await response.json();
-    console.log('Registration successful');
+
     return data;
   } catch (error) {
     console.error('Registration error:', error);
@@ -47,7 +47,6 @@ export async function loginUser(userDetails) {
     }
 
     const { data } = await response.json();
-    console.log('Login successful');
 
     saveLoginData(data);
 

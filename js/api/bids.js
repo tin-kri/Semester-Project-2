@@ -17,7 +17,7 @@ export async function placeBid(listingId, bidAmount) {
     }
 
     const data = await response.json();
-    console.log('Bid placed successfully:', data);
+
     return data;
   } catch (error) {
     console.error('Error placing bid:', error);

@@ -18,7 +18,7 @@ export async function getMyProfile() {
 
   try {
     const data = await makeAuthenticatedRequest(url);
-    console.log('My profile:', data);
+
     return data;
   } catch (error) {
     console.error('Error fetching my profile:', error);
@@ -38,7 +38,7 @@ export async function updateMyProfile(updateData) {
       method: 'PUT',
       body: JSON.stringify(updateData),
     });
-    console.log('Profile updated:', data);
+
     return data;
   } catch (error) {
     console.error('error updating profile', error);
@@ -56,7 +56,7 @@ export async function getMyListings() {
 
   try {
     const data = await makeAuthenticatedRequest(url);
-    console.log('My listings:', data);
+
     return data;
   } catch (error) {
     console.error('Error fetching my listings:', error);
@@ -73,7 +73,7 @@ export async function getMyBids() {
   const url = buildProfileUrl(user.name, '/bids');
   try {
     const data = await makeAuthenticatedRequest(url);
-    console.log('My bids:', data);
+
     return data;
   } catch (error) {
     console.error('Error fetching my bids:', error);

@@ -7,7 +7,6 @@ import { setHTML, showError, showEmpty } from '../utils/dom.js';
 import { createSkeletonCards } from '../components/skeletonCard.js';
 
 export function initLandingPage() {
-  console.log('Loading landing page...');
   loadListings();
 }
 

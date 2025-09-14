@@ -8,7 +8,6 @@ import { formatTimeRemaining, isAuctionEnded } from '../utils/timeUtils.js';
 import { showSuccess, showError } from '../utils/messages.js';
 
 export function initListingsDetailsPage() {
-  console.log('Loading listing detail page...');
   loadListingDetail();
 }
 
@@ -16,7 +15,7 @@ async function loadListingDetail() {
   try {
     const response = await fetchListingDetail();
     const listing = response.data;
-    console.log('Displaying listing:', listing);
+
     displayListing(listing);
   } catch (error) {
     console.error('Error loading listing:', error);
@@ -93,8 +92,6 @@ function initializeBidForm(listing) {
 }
 
 async function handleBidSuccess(listingId, bidAmount) {
-  console.log(`Placing bid of ${bidAmount} on listing ${listingId}`);
-
   //  place the bid
   await placeBid(listingId, bidAmount);
 

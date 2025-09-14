@@ -12,7 +12,7 @@ export async function fetchBrowseListings() {
       throw new Error('Failed to fetch browse listings');
     }
     const data = await response.json();
-    console.log('browse listings:', data);
+    
     return data;
   } catch (error) {
     console.error('failed to fetch browse listings', error);
@@ -35,7 +35,7 @@ export async function fetchEndingSoonListings() {
     }
 
     const data = await response.json();
-    console.log('Ending soon listings:', data);
+    
     return data;
   } catch (error) {
     console.error('Error fetching ending soon listings:', error);
@@ -58,7 +58,7 @@ export async function fetchNewestListings() {
     }
 
     const data = await response.json();
-    console.log('Newest listings:', data);
+    
     return data;
   } catch (error) {
     console.error('Error fetching newest listings:', error);
@@ -92,7 +92,7 @@ export async function fetchListingDetail() {
       throw new Error('Failed to fetch listing detail');
     }
     const data = await response.json();
-    console.log('listing detail:', data);
+    
     return data;
   } catch (error) {
     console.error('Error fetching listing detail:', error);
@@ -119,7 +119,7 @@ export async function fetchListingDetail() {
 
 //     // Analyze tags and return top 10 most popular
 //     const popularTags = analyzeTagsFromListings(listings);
-//     console.log("Popular tags:", popularTags);
+//     
 
 //     return popularTags;
 
@@ -129,7 +129,7 @@ export async function fetchListingDetail() {
 //   }
 // }
 export async function fetchPopularTags() {
-  console.log('fetchPopularTags called');
+  
 
   // This should already only get active listings
   const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUCTION.LISTINGS}?_active=true&_seller=true&_bids=true`;
@@ -146,16 +146,16 @@ export async function fetchPopularTags() {
     }
 
     const data = await response.json();
-    console.log('Active listings for tag analysis:', data.data?.length); // Debug
+     // Debug
 
     const listings = data.data || [];
 
     // Debug: check if these listings are truly active
-    console.log('Sample listing ends at:', listings[0]?.endsAt);
-    console.log('Current time:', new Date().toISOString());
+    
+    .toISOString());
 
     const popularTags = analyzeTagsFromListings(listings);
-    console.log('Popular tags from ACTIVE listings:', popularTags);
+    
 
     return popularTags;
   } catch (error) {

@@ -8,8 +8,6 @@ let bioEditorInitialized = false;
 let avatarEditorInitialized = false;
 
 export async function initProfile() {
-  console.log('Profile page initialized successfully');
-
   try {
     const profileData = await getMyProfile();
     const data = profileData.data;
@@ -117,7 +115,7 @@ function initializeAvatarEditor(currentAvatar) {
 async function handleBioUpdate(newBio) {
   try {
     await updateMyProfile({ bio: newBio });
-    console.log('Bio updated successfully');
+
     showProfileMessage('Bio updated successfully!', 'success');
     return Promise.resolve();
   } catch (error) {
@@ -130,7 +128,6 @@ async function handleBioUpdate(newBio) {
 async function handleAvatarUpdate(avatarData) {
   try {
     await updateMyProfile({ avatar: avatarData });
-    console.log('Avatar updated successfully');
 
     updateCurrentUser({ avatar: avatarData });
 
@@ -151,8 +148,6 @@ async function handleAvatarUpdate(avatarData) {
 }
 
 function hideOtherEditButtons(activeEditor) {
-  console.log(`Hiding other editors, ${activeEditor} is now active`);
-
   const bioEditBtn = document.querySelector('#edit-bio');
   const avatarEditBtn = document.querySelector('#change-avatar');
 
@@ -164,8 +159,6 @@ function hideOtherEditButtons(activeEditor) {
 }
 
 function showAllEditButtons() {
-  console.log('Showing all edit buttons');
-
   const bioEditBtn = document.querySelector('#edit-bio');
   const avatarEditBtn = document.querySelector('#change-avatar');
 
@@ -186,7 +179,7 @@ function showAllEditButtons() {
 // let avatarEditorInitialized = false;
 
 // export async function initProfile() {
-//   console.log("Profile page initialized successfully");
+//
 
 //   try {
 //     const profileData = await getMyProfile();
@@ -273,7 +266,7 @@ function showAllEditButtons() {
 // async function handleBioUpdate(newBio) {
 //   try {
 //     await updateMyProfile({ bio: newBio });
-//     console.log("Bio updated successfully");
+//
 
 //     // Only show success message when it succeeds
 //     showSuccess("Bio updated successfully!", {
@@ -296,7 +289,7 @@ function showAllEditButtons() {
 // async function handleAvatarUpdate(avatarData) {
 //   try {
 //     await updateMyProfile({ avatar: avatarData });
-//     console.log("Avatar updated successfully");
+//
 
 //     updateCurrentUser({ avatar: avatarData });
 
@@ -335,7 +328,7 @@ function showAllEditButtons() {
 
 // // coordinate all editors
 // function hideOtherEditButtons(activeEditor) {
-//   console.log(`Hiding other editors, ${activeEditor} is now active`);
+//
 
 //   const bioEditBtn = document.querySelector("#edit-bio");
 //   const avatarEditBtn = document.querySelector("#change-avatar");
@@ -348,7 +341,7 @@ function showAllEditButtons() {
 // }
 
 // function showAllEditButtons() {
-//   console.log("Showing all edit buttons");
+//
 
 //   const bioEditBtn = document.querySelector("#edit-bio");
 //   const avatarEditBtn = document.querySelector("#change-avatar");

@@ -2,7 +2,6 @@ import { requireAuth } from '../utils/authUtils.js';
 
 export function initializeApp() {
   const currentPath = window.location.pathname;
-  console.log('Current path:', currentPath);
 
   switch (true) {
     case currentPath === '/' || currentPath === '/index.html':
@@ -28,34 +27,28 @@ export function initializeApp() {
       initializeBrowseListingsPage();
       break;
     default:
-      console.log('Unknown route:', currentPath);
   }
 }
 async function initializeLandingPage() {
-  console.log('Loading landing page...');
   const { initLandingPage } = await import('../pages/landingPage.js');
   initLandingPage();
 }
 
 async function initializeBrowseListingsPage() {
-  console.log('Loading Browse Listings page...');
   const { initBrowseListingsPage } = await import('../pages/listings.js');
   initBrowseListingsPage();
 }
 async function initializeRegisterPage() {
-  console.log('Loading register page...');
   const { initRegister } = await import('../pages/register.js');
   initRegister();
 }
 
 async function initializeLoginPage() {
-  console.log('Loading login page...');
   const { initLogin } = await import('../pages/login.js');
   initLogin();
 }
 
 async function initializeProfilePage() {
-  console.log('Loading profile page...');
   if (!requireAuth()) {
     return;
   }
@@ -64,7 +57,6 @@ async function initializeProfilePage() {
 }
 
 async function initializeCreateListingPage() {
-  console.log('Loading Create New Listing page...');
   if (!requireAuth()) {
     return;
   }
@@ -73,7 +65,6 @@ async function initializeCreateListingPage() {
 }
 
 async function initializeListingsDetailsPage() {
-  console.log('loading listing details page...');
   const { initListingsDetailsPage } = await import(
     '../pages/listingDetails.js'
   );

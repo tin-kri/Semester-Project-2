@@ -39,7 +39,6 @@ export function updateCurrentUser(updatedFields) {
   const success = addToLocalStorage('user', JSON.stringify(updatedUser));
 
   if (success) {
-    console.log('User data updated:', updatedFields);
   }
 
   return success;
@@ -96,13 +95,11 @@ export function logout() {
   removeFromLocalStorage('accessToken');
   removeFromLocalStorage('user');
 
-  console.log('User logged out');
   window.location.href = '/auth/login/';
 }
 
 export function requireAuth() {
   if (!isLoggedIn()) {
-    console.log('Authentication required, redirecting to login...');
     window.location.href = '/auth/login/';
     return false;
   }

@@ -26,7 +26,7 @@ describe('createTagsDisplay', () => {
 
     // Assert
     expect(result).toBe(
-      '<span class="text-dropp-gray-500 text-sm">No tags</span>'
+      '<span class="text-dropp-gray-500 text-sm">No tags</span>',
     );
   });
 
@@ -36,7 +36,7 @@ describe('createTagsDisplay', () => {
 
     // Assert
     expect(result).toBe(
-      '<span class="text-dropp-gray-500 text-sm">No tags</span>'
+      '<span class="text-dropp-gray-500 text-sm">No tags</span>',
     );
   });
 
@@ -46,7 +46,7 @@ describe('createTagsDisplay', () => {
 
     // Assert
     expect(result).toBe(
-      '<span class="text-dropp-gray-500 text-sm">No tags</span>'
+      '<span class="text-dropp-gray-500 text-sm">No tags</span>',
     );
   });
 
@@ -56,7 +56,7 @@ describe('createTagsDisplay', () => {
 
     // Assert
     expect(result).toBe(
-      '<span class="text-dropp-gray-500 text-sm">No tags</span>'
+      '<span class="text-dropp-gray-500 text-sm">No tags</span>',
     );
   });
 
@@ -85,7 +85,7 @@ describe('createTagsDisplay', () => {
 
     // Assert
     expect(result).toBe(
-      '<span class="text-dropp-gray-500 text-sm">No tags</span>'
+      '<span class="text-dropp-gray-500 text-sm">No tags</span>',
     );
   });
 
@@ -110,7 +110,7 @@ describe('createTagsDisplay', () => {
 
     // Assert
     expect(result).toBe(
-      '<span class="px-4 py-2 bg-dropp-secondary/10 text-dropp-secondary rounded-lg text-sm font-medium border border-dropp-primary/20">test-tag</span>'
+      '<span class="px-4 py-2 bg-dropp-secondary/10 text-dropp-secondary rounded-lg text-sm font-medium border border-dropp-primary/20">test-tag</span>',
     );
   });
 

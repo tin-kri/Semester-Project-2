@@ -22,7 +22,6 @@ export function initRegister() {
   setupFieldValidation('#password', validatePassword);
 
   registerForm.addEventListener('submit', onRegisterFormSubmit);
-  console.log('Register page initialized successfully');
 }
 
 function validateForm() {
