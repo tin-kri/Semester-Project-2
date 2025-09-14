@@ -7,7 +7,6 @@ import {
 import { showError, showEmpty, setHTML } from '../utils/dom.js';
 import { initSearchComponent } from '../components/searchComponent.js';
 import { createSkeletonCards } from '../components/skeletonCard.js';
-import { initMobileFiltersModal } from './mobileModal.js';
 
 // Global state for filtering and sorting
 let allListings = [];
@@ -20,7 +19,6 @@ let currentSearchQuery = '';
  */
 export async function initBrowseListingsPage() {
   try {
-    initMobileFiltersModal();
     await loadAllListings();
     await initTagFilters(handleTagChange, handleClearFilters);
     initSortFilters(handleSortChange);
