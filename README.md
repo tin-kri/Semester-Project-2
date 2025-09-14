@@ -2,8 +2,6 @@
 
 An online auction platform where users can list items for sale and bid on others' listings. Built as a front-end application that interfaces with the Noroff API to provide comprehensive auction functionality.
 
-![DROPP Auction Platform Screenshot](https://via.placeholder.com/800x400/1a9cb0/ffffff?text=DROPP+Auction+Platform)
-
 ## 📋 Table of Contents
 
 - [Description](#description)
