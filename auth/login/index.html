@@ -128,30 +128,14 @@
     <!-- Main Content -->
     <main class="flex-1 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        
         <!-- Welcome Section -->
         <div class="text-center mb-8">
-          <!-- Icon -->
-          <div
-            class="mx-auto w-12 h-12 bg-dropp-primary/10 rounded-lg flex items-center justify-center mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-dropp-primary"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-              ></path>
-            </svg>
-          </div>
-
-          <h1 class="text-2xl font-bold font-archivo text-dropp-dark mb-2">
+          <h2
+              class="text-xl font-semibold font-archivo text-dropp-dark text-center"
+            > 
             Welcome Back
-          </h1>
+          </h2>
           <p class="text-dropp-primary text-sm">
             Sign in to your account to continue bidding and manage your
             listings.
@@ -161,11 +145,9 @@
         <!-- Sign In Form -->
         <div class="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
           <div class="mb-6">
-            <h2
-              class="text-xl font-semibold font-archivo text-dropp-dark text-center"
-            >
+           <h1 class="text-2xl font-bold font-archivo text-center text-dropp-dark mb-2">
               Sign In
-            </h2>
+            </h1>
             <p class="text-dropp-gray-600 text-sm text-center mt-1">
               Enter your credentials to access your account
             </p>
@@ -179,6 +161,7 @@
                 class="block text-sm font-medium text-dropp-dark mb-2"
               >
                 Email Address
+                <span class="text-dropp-red-500" aria-label="required">*</span>
               </label>
               <div class="input-wrapper">
                 <div
@@ -205,7 +188,7 @@
                   required
                   pattern="[a-zA-Z0-9._%+\-]+@stud\.noroff\.no$"
                   title="Must be a stud.noroff.no email address"
-                  placeholder="john.doe@stud.noroff.no"
+                  placeholder="johndoe@stud.noroff.no"
                   aria-describedby="email-error"
                   class="block w-full pl-10 pr-3 py-3 border border-dropp-gray-200 rounded-md placeholder-dropp-gray-400 focus:outline-none focus:ring-2 focus:ring-dropp-primary focus:border-dropp-primary text-sm"
                 />
@@ -228,6 +211,7 @@
                 class="block text-sm font-medium text-dropp-dark mb-2"
               >
                 Password
+                <span class="text-dropp-red-500" aria-label="required">*</span>
               </label>
               <div class="input-wrapper">
                 <div
@@ -270,8 +254,6 @@
               ></div>
             </div>
 
-            <!-- Remember Me & Forgot Password -->
-
             <!-- Submit Button -->
             <div class="form-group">
               <button type="submit" class="btn btn-primary w-full py-3 px-4">
@@ -309,8 +291,8 @@
             DROPP//
           </a>
           <p class="text-dropp-gray-500 text-sm mt-2">
-            Copyright © 2024 Dropp Corp<br />
-            | All Rights Reserved
+            Copyright © 2025 Dropp Corp<br/>
+             All Rights Reserved
           </p>
         </div>
 

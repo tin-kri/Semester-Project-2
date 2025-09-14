@@ -1,4 +1,3 @@
-import { duration } from 'happy-dom/lib/PropertySymbol.js';
 import { createListing } from '../api/createListing.js';
 import { showSuccess, showError } from '../utils/messages.js';
 
@@ -51,7 +50,7 @@ function combineDateTime(date, time) {
 function buildListingData(formFields) {
   const endsAt = combineDateTime(
     formFields.auctionDate,
-    formFields.auctionTime,
+    formFields.auctionTime
   );
 
   const listingData = {

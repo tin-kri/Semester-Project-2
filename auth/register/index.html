@@ -105,7 +105,7 @@
             class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-dropp-gray-200"
           >
             <a
-            href="/browse-listings/index.html"
+              href="/browse-listings/index.html"
               class="block px-3 py-2 text-dropp-gray-600 hover:text-dropp-primary text-sm font-medium transition-colors"
             >
               Auctions
@@ -132,30 +132,12 @@
         <div class="register-wrapper flex-1 flex flex-col justify-center py-12">
           <!-- Welcome Section -->
           <div class="welcome-section text-center mb-8">
-            <div
-              class="icon mx-auto w-12 h-12 bg-dropp-primary/10 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-dropp-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
-                ></path>
-              </svg>
-            </div>
-            <h1 class="text-2xl font-bold font-archivo text-dropp-dark mb-2">
+            <h2 class="text-xl font-semibold font-archivo text-dropp-dark mb-2">
               Join Dropp
-            </h1>
-            <p class="text-dropp-gray-600 text-sm">
-              Create your account and start bidding on amazing items. Get
-              <strong class="text-dropp-primary">1000 credits</strong> to get
-              started!
+            </h2>
+            <p class="text-dropp-primary text-sm">
+              Create your account and start bidding on amazing items. Get 1000
+              credits to get started!
             </p>
           </div>
 
@@ -163,11 +145,11 @@
           <div class="form-container sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
               <div class="form-header mb-6">
-                <h2
-                  class="text-xl font-semibold font-archivo text-dropp-dark text-center"
+                <h1
+                  class="text-2xl font-bold font-archivo text-center text-dropp-dark mb-2"
                 >
                   Create Account
-                </h2>
+                </h1>
                 <p class="text-dropp-gray-600 text-sm text-center mt-1">
                   Enter your details below to create your account
                 </p>
@@ -179,7 +161,10 @@
                   <label
                     for="name"
                     class="block text-sm font-medium text-dropp-dark mb-2"
-                    >Username</label
+                    >Username
+                    <span class="text-dropp-red-500" aria-label="required"
+                      >*</span
+                    ></label
                   >
                   <div class="input-wrapper">
                     <input
@@ -210,7 +195,10 @@
                   <label
                     for="email"
                     class="block text-sm font-medium text-dropp-dark mb-2"
-                    >Email Address</label
+                    >Email Address
+                    <span class="text-dropp-red-500" aria-label="required"
+                      >*</span
+                    ></label
                   >
                   <div class="input-wrapper">
                     <input
@@ -218,7 +206,7 @@
                       id="email"
                       name="email"
                       required
-                      placeholder="john.doe@stud.noroff.no"
+                      placeholder="johndoe@stud.noroff.no"
                       pattern="[a-zA-Z0-9._%+\-]+@stud\.noroff\.no$"
                       title="Email must end with @stud.noroff.no"
                       autocomplete="email"
@@ -242,7 +230,10 @@
                   <label
                     for="password"
                     class="block text-sm font-medium text-dropp-dark mb-2"
-                    >Password</label
+                    >Password
+                    <span class="text-dropp-red-500" aria-label="required"
+                      >*</span
+                    ></label
                   >
                   <div class="input-wrapper">
                     <input
@@ -314,7 +305,7 @@
           </a>
           <p class="text-dropp-gray-500 text-sm mt-2">
             Copyright © 2024 Dropp Corp<br />
-            | All Rights Reserved
+            All Rights Reserved
           </p>
         </div>
 
