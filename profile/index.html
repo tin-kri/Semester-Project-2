@@ -128,7 +128,22 @@
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- Profile Header -->
-      <div class="p-10" id="profile-user-banner"></div>
+      <!-- Updated breadcrumbs to be better styled-->
+      <div class="bg-white rounded-lg shadow-sm p-4 mb-8">
+        <nav aria-label="Breadcrumb">
+          <div class="text-dropp-gray-600 text-md font-medium">
+            <a
+              href="../index.html"
+              class="hover:text-dropp-primary transition-colors"
+              >Home</a
+            >
+            <span class="mx-2 text-dropp-primary">//</span>
+            <a href="#" class="text-dropp-primary ">Profile</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="" id="profile-user-banner"></div>
       <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
         <div
           class="flex flex-col md:flex-row items-start md:items-center gap-6"
@@ -172,7 +187,7 @@
               <!-- URL input, alt input, save/cancel buttons appear here -->
             </div>
             <!-- Stats -->
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div class="bg-dropp-gray-50 rounded-lg p-4 text-center">
                 <div
                   class="text-2xl font-bold font-archivo text-dropp-primary"
@@ -187,7 +202,6 @@
                 ></div>
                 <div class="text-sm text-dropp-gray-600">Active Listings</div>
               </div>
-              <div class="bg-dropp-gray-50 rounded-lg p-4 text-center"></div>
               <div class="bg-dropp-gray-50 rounded-lg p-4 text-center">
                 <div
                   class="text-2xl font-bold font-archivo text-dropp-dark"

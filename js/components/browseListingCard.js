@@ -3,9 +3,9 @@ export function createBrowseListingCard(listing) {
     listing.media?.[0]?.url || '/placeholder.svg?height=192&width=256';
   const bidCount = listing._count?.bids || 0;
   const highestBid = getHighestBid(listing.bids);
-  const timeLeft = getTimeLeft(listing.endsAt); // Fixed: Actually call the function
-  const isUrgent = isTimeUrgent(listing.endsAt); // Fixed: Actually call the function
-//removed onerror="this.src='/placeholder.svg?height=192&width=256'" infinity request svg
+  const timeLeft = getTimeLeft(listing.endsAt);
+  const isUrgent = isTimeUrgent(listing.endsAt);
+  //removed onerror="this.src='/placeholder.svg?height=192&width=256'" infinity request svg
   return `
       <div class="bg-white rounded-lg p-6">
         <div class="relative w-full h-48 bg-dropp-gray-200 rounded-lg mb-4 overflow-hidden">
@@ -70,7 +70,7 @@ function getTimeLeft(endsAt) {
 
   const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
   const hours = Math.floor(
-    (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+    (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
   );
 
   if (days > 0) {
