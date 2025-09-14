@@ -5,7 +5,7 @@ export function createTagsDisplay(tags) {
 
   const validTags = tags.filter(
     tag =>
-      tag != null && tag !== undefined && tag !== '' && typeof tag === 'string'
+      tag != null && tag !== undefined && tag !== '' && typeof tag === 'string',
   );
 
   if (validTags.length > 0) {

@@ -1,3 +1,4 @@
+
 import { createListing } from '../api/createListing.js';
 import { showSuccess, showError } from '../utils/messages.js';
 import {
@@ -109,6 +110,22 @@ function buildListingData(formFields) {
     ];
   }
 
-  listingData.tags = [];
+  listingData.tags = processTags(formFields.tagInput);
+
   return listingData;
 }
+
+// Helper function to process tags from input
+function processTags(tagInput) {
+  if (!tagInput || !tagInput.trim()) {
+    return []; // Return empty array if no tags
+  }
+
+  // Split by comma, trim each tag, and filter out empty ones
+  return tagInput
+    .split(',')
+    .map(tag => tag.trim())
+    .filter(tag => tag.length > 0)
+    .slice(0, 5); // Limit to 10 tags max
+}
+
