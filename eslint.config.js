@@ -37,7 +37,7 @@ export default [
     rules: {
       // Customize rules for your auction website
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      'no-console': 'warn', // Allow console.log in development but warn
+      'no-console': ['error', { 'allow': ['warn', 'error'] }],
       'prefer-const': 'error',
       'no-var': 'error',
       curly: 'error',

@@ -37,10 +37,6 @@ export function updateCurrentUser(updatedFields) {
 
   const updatedUser = { ...currentUser, ...updatedFields };
   const success = addToLocalStorage('user', JSON.stringify(updatedUser));
-
-  if (success) {
-  }
-
   return success;
 }
 

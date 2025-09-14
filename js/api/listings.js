@@ -78,7 +78,7 @@ export async function fetchListingDetail() {
     API_CONFIG.BASE_URL
   }${API_CONFIG.ENDPOINTS.AUCTION.LISTING_DETAIL.replace(
     '<id>',
-    listingId
+    listingId,
   )}?_seller=true&_bids=true`;
 
   try {

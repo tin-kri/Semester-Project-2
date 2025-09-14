@@ -5,14 +5,14 @@ export function createTagsDisplay(tags) {
 
   const validTags = tags.filter(
     tag =>
-      tag != null && tag !== undefined && tag !== '' && typeof tag === 'string'
+      tag != null && tag !== undefined && tag !== '' && typeof tag === 'string',
   );
 
   if (validTags.length > 0) {
     return validTags
       .map(
         tag =>
-          `<span class="px-4 py-2 bg-dropp-secondary/10 text-dropp-secondary rounded-lg text-sm font-medium border border-dropp-primary/20">${tag}</span>`
+          `<span class="px-4 py-2 bg-dropp-secondary/10 text-dropp-secondary rounded-lg text-sm font-medium border border-dropp-primary/20">${tag}</span>`,
       )
       .join('');
   } else {
