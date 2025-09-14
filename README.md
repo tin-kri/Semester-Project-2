@@ -103,7 +103,7 @@ Ensure you have the following installed:
    ```env
   
 VITE_APP_NAME="Your App Name"
-VITE_API_BASE_URL=https://v2.api.noroff.dev
+VITE_API_BASE_URL=urlhere
 VITE_API_KEY=your_api_key_here
 VITE_TEST_USER_EMAIL=test@stud.noroff.no
 VITE_TEST_USER_PASSWORD=your_password
