@@ -50,7 +50,7 @@ The client has specified the following requirements:
 - **Design Application**: Figma
 - **Planning Application**: GitHub Projects
 
-## ✨ Features
+##  Features
 
 ### Authentication & User Management
 - User registration with `stud.noroff.no` email validation
@@ -155,4 +155,4 @@ npm run preview
 
 **Course**: Front-End Development  
 **Institution**: Noroff School of Technology and Digital Media  
-**Year**: 2024
+**Year**: 2025
