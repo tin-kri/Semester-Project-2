@@ -125,7 +125,7 @@ The application integrates with the **Noroff Auction API v2**:
 
 ### Live Demo
 The application is deployed on Netlify:
- **[View Live Demo](https://https://dropp-semester-project-2.netlify.app/)**
+ **[View Live Demo](https://dropp-semester-project-2.netlify.app/)**
 
 
 ### Build Commands
