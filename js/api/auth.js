@@ -1,25 +1,33 @@
 import { API_CONFIG } from '../utils/constants.js';
 import { addToLocalStorage } from '../utils/storage.js';
 
+async function postRequest(endpoint, body, fallbackErrorMessage) {
+  const fetchOptions = {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const url = `${API_CONFIG.BASE_URL}${endpoint}`;
+  const response = await fetch(url, fetchOptions);
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.errors?.[0]?.message || fallbackErrorMessage);
+  }
+
+  return json;
+}
+
 export async function registerUser(userDetails) {
   try {
-    const fetchOptions = {
-      method: 'POST',
-      body: JSON.stringify(userDetails),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUTH.REGISTER}`;
-    const response = await fetch(url, fetchOptions);
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.errors?.[0]?.message || 'Registration failed');
-    }
-
-    const data = await response.json();
+    const data = await postRequest(
+      API_CONFIG.ENDPOINTS.AUTH.REGISTER,
+      userDetails,
+      'Registration failed'
+    );
 
     return data;
   } catch (error) {
@@ -30,23 +38,11 @@ export async function registerUser(userDetails) {
 
 export async function loginUser(userDetails) {
   try {
-    const fetchOptions = {
-      method: 'POST',
-      body: JSON.stringify(userDetails),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUTH.LOGIN}`;
-    const response = await fetch(url, fetchOptions);
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.errors?.[0]?.message || 'Login failed');
-    }
-
-    const { data } = await response.json();
+    const { data } = await postRequest(
+      API_CONFIG.ENDPOINTS.AUTH.LOGIN,
+      userDetails,
+      'Login failed'
+    );
 
     saveLoginData(data);
 
